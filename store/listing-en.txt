@@ -1,0 +1,42 @@
+MedCal – Medical Calculators
+---
+38 medical calculators for doctors and for everyone. Free, works offline.
+---
+MedCal brings 38 medical calculators together in one simple app. When you open it, choose who you are: a doctor or other health professional, or a member of the public. You can switch at any time.
+
+FOR DOCTORS (28 TOOLS)
+• Kidney: eGFR (CKD-EPI 2021), creatinine clearance (Cockcroft-Gault)
+• Heart: mean arterial pressure, QTc, CHA₂DS₂-VA / CHA₂DS₂-VASc, HAS-BLED
+• Acute care: Wells DVT / PE with PERC, CURB-65, NEWS2, qSOFA, Glasgow Coma Scale
+• Lab: anion gap, corrected calcium, corrected sodium, serum osmolality and osmolal gap
+• Body size: BMI (Asian and WHO cut-offs), BSA, ideal and adjusted body weight
+• Mother and child: gestational age and due date, Bishop score, maintenance fluids (Holliday-Segar), WHO growth z-scores and MUAC, dehydration and ORS plan
+• Burns: Parkland fluids with rule of nines
+• Liver and diabetes: APRI and FIB-4, HbA1c to average glucose, Ramadan fasting risk (IDF-DAR 2026)
+• Dengue: warning signs and WHO fluid plans
+• Infusion and drip rate
+• Lab unit converter: conventional (mg/dL) to SI (mmol/L, µmol/L) for common tests
+
+FOR EVERYONE (10 TOOLS)
+• BMI and waist check, with Asian cut-offs
+• Diabetes risk test
+• Blood pressure and blood sugar reading checks
+• 10-year heart risk (WHO chart for South Asia)
+• Pregnancy due date
+• Dengue danger signs
+• Ramadan fasting check
+• Heat risk check
+• Unit converter: sugar, temperature, height and weight
+
+CLEAR RESULTS
+Each result shows a coloured band and a short explanation. Every tool shows its formula and its published sources, and you can copy the result. Danger signs show a red "Get medical help now" box with a button to call 1122.
+
+PRIVATE AND OFFLINE
+No account and no sign-in. The values you enter stay on your phone and are not saved or sent anywhere. The calculators work without internet.
+
+IMPORTANT
+MedCal is a reference tool. It is not a medical device and does not diagnose or treat any condition. Results do not replace the judgement of a qualified health professional. In an emergency, call 1122 or go to the nearest hospital.
+
+The app is free and shows a small banner ad on the home and settings screens only, never on a calculator.
+
+Made by HomiLabs.

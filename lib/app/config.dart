@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 
-const String kAppName = 'Medical Calc';
+const String kAppName = 'MedCal';
 
 /// Must equal the `+N` build number in pubspec.yaml.
 const int kAppBuild = 1;
-const String kAppVersion = '0.1.0';
+const String kAppVersion = '1.0.0';
 
 const String kWebBase = 'https://tools.homilabs.org/medicalcalc';
 const String kPrivacyUrl = '$kWebBase/privacy.html';

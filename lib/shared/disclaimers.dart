@@ -11,7 +11,7 @@ const String kPublicDisclaimer =
     'or go to the nearest hospital.';
 
 const String kMedicalDeviceNotice =
-    'Medical Calc is not a medical device and does not diagnose, treat, cure, '
+    'MedCal is not a medical device and does not diagnose, treat, cure, '
     'or prevent any medical condition. Always consult a qualified healthcare '
     'professional.';
 

@@ -1,4 +1,4 @@
-# Medical Calc (working title) — App Design Document v0.1
+# MedCal (was "Medical Calc", working title) — App Design Document v0.1
 
 **Owner:** HomiLabs Solutions SMC Pvt Ltd
 **Prepared:** 9 November 2026 · **Status:** Release 1 built; all calculators reviewed and passed by Homi (9 Nov 2026). Decisions in Section 14.1.
@@ -344,7 +344,7 @@ Each batch: source check → golden vectors → code → tests → device test �
 
 | # | Question | Recommendation |
 |---|---|---|
-| 14.1 | **App name** | Keep "Medical Calc (working title)"; choose the real name before the store listing |
+| 14.1 | **App name** | **MedCal** under the icon; Play title "MedCal – Medical Calculators" (Homi, 9 Nov) |
 | 14.3 | **WHO chart region** for Pakistan | Resolved 9 Nov: South Asia (Kaptoge 2019 appendix 1 lists Pakistan under South Asia) |
 | 14.5 | **Crashlytics**: include? | Yes — crash reports only, declared in Data safety; needs a Firebase project |
 | 14.11 | **Reviewer's name** | Homi to give it |

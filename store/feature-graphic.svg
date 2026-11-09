@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500">
+  <rect width="1024" height="500" fill="#00796B"/>
+  <g transform="translate(110 110) scale(4.4)">
+    <rect x="14" y="10" width="36" height="44" rx="6" fill="#fff"/>
+    <rect x="19" y="15" width="26" height="10" rx="2" fill="#B2DFDB"/>
+    <path d="M32 31v14M25 38h14" stroke="#00796B" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="440" y="215" font-family="Roboto, Noto Sans, sans-serif" font-size="88" font-weight="700" fill="#fff">MedCal</text>
+  <text x="442" y="280" font-family="Roboto, Noto Sans, sans-serif" font-size="38" fill="#E0F2F1">Medical calculators</text>
+  <text x="442" y="330" font-family="Roboto, Noto Sans, sans-serif" font-size="30" fill="#B2DFDB">28 for doctors · 10 for everyone</text>
+</svg>

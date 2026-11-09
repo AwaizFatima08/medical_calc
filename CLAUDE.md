@@ -1,4 +1,4 @@
-# Medical Calc (working title) — notes for Claude Code
+# MedCal — notes for Claude Code
 
 Flutter Android health calculator for Pakistan, English only, offline, no login. Opens with a mode selector: **Doctor** (28 clinical tools) or **Public** (10 self-checks). Design: `docs/medical-calc-design-v0.1.md` (draft, decisions in Section 14). Research behind it: `reports/Health calculator tools for app.md` and `research_notes/`.
 

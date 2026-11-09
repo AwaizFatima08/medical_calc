@@ -1,6 +1,6 @@
 # medicalcalc
 
-Medical Calc - health calculators for doctors and the public
+MedCal - health calculators for doctors and the public
 
 ## Getting Started
 
