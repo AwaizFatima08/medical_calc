@@ -1,0 +1,52 @@
+{
+ "id": "parkland",
+ "source": "Parkland 4 mL/kg/%TBSA; classic example 70 kg 30% = 8400 mL",
+ "cases": [
+  {
+   "name": "70 kg 30%",
+   "inputs": {
+    "weight": 70,
+    "method": 0,
+    "tbsa": 30
+   },
+   "expect": {
+    "headline": "8400",
+    "band": "TBSA 30%",
+    "detail": "First 8 hours: 4200 mL (525 mL/h)"
+   }
+  },
+  {
+   "name": "80 kg 27%",
+   "inputs": {
+    "weight": 80,
+    "method": 1,
+    "head": false,
+    "r_arm": true,
+    "l_arm": false,
+    "front": true,
+    "back": false,
+    "r_leg": false,
+    "l_leg": false,
+    "perineum": false
+   },
+   "expect": {
+    "headline": "8640",
+    "band": "TBSA 27%",
+    "detail": "First 8 hours: 4320 mL (540 mL/h)"
+   }
+  },
+  {
+   "name": "20 kg 12%",
+   "inputs": {
+    "weight": 20,
+    "method": 0,
+    "tbsa": 12
+   },
+   "expect": {
+    "headline": "960",
+    "band": "TBSA 12%",
+    "detail": "First 8 hours: 480 mL (60 mL/h)"
+   }
+  }
+ ]
+}

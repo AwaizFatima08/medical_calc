@@ -8,6 +8,8 @@ import 'tools/clots.dart';
 import 'tools/heart.dart';
 import 'tools/kidney.dart';
 import 'tools/lab.dart';
+import 'tools/liver_diabetes.dart';
+import 'tools/mother_child.dart';
 
 final Map<String, CalcDefinition> kCalculators = {
   for (final c in [
@@ -27,6 +29,14 @@ final Map<String, CalcDefinition> kCalculators = {
     correctedCalciumCalc,
     correctedSodiumCalc,
     osmolalityCalc,
+    gestationalAgeCalc,
+    bishopCalc,
+    hollidaySegarCalc,
+    parklandCalc,
+    dehydrationCalc,
+    apriFib4Calc,
+    a1cEagCalc,
+    dripRateCalc,
   ])
     c.id: c,
 };

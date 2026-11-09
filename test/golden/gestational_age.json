@@ -1,0 +1,69 @@
+{
+ "id": "gestational_age",
+ "source": "Naegele rule LMP + 280 days; Python datetime reference",
+ "cases": [
+  {
+   "name": "LMP 1 Jan 2026, today 9 Nov 2026",
+   "inputs": {
+    "method": 0,
+    "lmp": "2026-01-01",
+    "today": "2026-11-09"
+   },
+   "expect": {
+    "headline": "44w 4d",
+    "detail": "Due date: 8 Oct 2026"
+   }
+  },
+  {
+   "name": "LMP 15 Jun 2026, today 9 Nov 2026",
+   "inputs": {
+    "method": 0,
+    "lmp": "2026-06-15",
+    "today": "2026-11-09"
+   },
+   "expect": {
+    "headline": "21w 0d",
+    "detail": "Due date: 22 Mar 2027"
+   }
+  },
+  {
+   "name": "across leap day: LMP 1 Feb 2028",
+   "inputs": {
+    "method": 0,
+    "lmp": "2028-02-01",
+    "today": "2028-05-01"
+   },
+   "expect": {
+    "headline": "12w 6d",
+    "detail": "Due date: 7 Nov 2028"
+   }
+  },
+  {
+   "name": "scan 1 Sep 2026 at 12w 3d",
+   "inputs": {
+    "method": 1,
+    "scan": "2026-09-01",
+    "scan_w": 12,
+    "today": "2026-11-09",
+    "scan_d": 3
+   },
+   "expect": {
+    "headline": "22w 2d",
+    "detail": "Due date: 13 Mar 2027"
+   }
+  },
+  {
+   "name": "scan without days",
+   "inputs": {
+    "method": 1,
+    "scan": "2026-10-01",
+    "scan_w": 20,
+    "today": "2026-11-09"
+   },
+   "expect": {
+    "headline": "25w 4d",
+    "detail": "Due date: 18 Feb 2027"
+   }
+  }
+ ]
+}

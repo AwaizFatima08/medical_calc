@@ -188,6 +188,8 @@ abstract final class Q {
   static const dropFactor = Quantity('drop_factor', 'Drop factor', [
     Unit('drops/mL', 1),
   ]);
+  static const weeks = Quantity('weeks', 'Weeks', [Unit('weeks', 1)]);
+  static const days = Quantity('days', 'Days', [Unit('days', 1)]);
   static const osmolality = Quantity('osmolality', 'Osmolality', [
     Unit('mOsm/kg', 1),
   ]);

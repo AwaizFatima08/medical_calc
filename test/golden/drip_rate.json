@@ -1,0 +1,42 @@
+{
+ "id": "drip_rate",
+ "source": "mL/h = V/t; drops/min = mL/h × factor / 60; by hand",
+ "cases": [
+  {
+   "name": "1000 mL over 8 h, 20 drop set",
+   "inputs": {
+    "volume": 1000,
+    "time": 8,
+    "factor": 20
+   },
+   "expect": {
+    "headline": "125",
+    "band": "42 drops/min"
+   }
+  },
+  {
+   "name": "500 mL over 4 h, 15 drop set",
+   "inputs": {
+    "volume": 500,
+    "time": 4,
+    "factor": 15
+   },
+   "expect": {
+    "headline": "125",
+    "band": "31 drops/min"
+   }
+  },
+  {
+   "name": "100 mL over 30 min, 60 micro",
+   "inputs": {
+    "volume": 100,
+    "time": 0.5,
+    "factor": 60
+   },
+   "expect": {
+    "headline": "200",
+    "band": "200 drops/min"
+   }
+  }
+ ]
+}

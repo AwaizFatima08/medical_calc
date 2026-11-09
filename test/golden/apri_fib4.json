@@ -1,0 +1,102 @@
+{
+ "id": "apri_fib4",
+ "source": "Sterling 2006 / Wai 2003 formulas, reference implementation",
+ "cases": [
+  {
+   "name": "ctx0 50y AST40 ALT40 plt250 → FIB4 1.265 APRI 0.400",
+   "inputs": {
+    "context": 0,
+    "age": 50,
+    "ast": 40,
+    "alt": 40,
+    "uln": 40,
+    "plt": 250
+   },
+   "expect": {
+    "headline": "1.26",
+    "band": "Low risk of advanced fibrosis (below 1.45)",
+    "detail": "APRI 0.4"
+   }
+  },
+  {
+   "name": "ctx0 55y AST90 ALT80 plt120 → FIB4 4.612 APRI 1.875",
+   "inputs": {
+    "context": 0,
+    "age": 55,
+    "ast": 90,
+    "alt": 80,
+    "uln": 40,
+    "plt": 120
+   },
+   "expect": {
+    "headline": "4.61",
+    "band": "High risk of advanced fibrosis (above 3.25)",
+    "detail": "APRI 1.88"
+   }
+  },
+  {
+   "name": "ctx0 60y AST120 ALT60 plt60 → FIB4 15.492 APRI 5.000",
+   "inputs": {
+    "context": 0,
+    "age": 60,
+    "ast": 120,
+    "alt": 60,
+    "uln": 40,
+    "plt": 60
+   },
+   "expect": {
+    "headline": "15.49",
+    "band": "High risk of advanced fibrosis (above 3.25)",
+    "detail": "APRI 5"
+   }
+  },
+  {
+   "name": "ctx1 45y AST30 ALT50 plt220 → FIB4 0.868 APRI 0.341",
+   "inputs": {
+    "context": 1,
+    "age": 45,
+    "ast": 30,
+    "alt": 50,
+    "uln": 40,
+    "plt": 220
+   },
+   "expect": {
+    "headline": "0.87",
+    "band": "Low risk of advanced fibrosis (below 1.3)",
+    "detail": "APRI 0.34"
+   }
+  },
+  {
+   "name": "ctx1 70y AST45 ALT40 plt160 → FIB4 3.113 APRI 0.703",
+   "inputs": {
+    "context": 1,
+    "age": 70,
+    "ast": 45,
+    "alt": 40,
+    "uln": 40,
+    "plt": 160
+   },
+   "expect": {
+    "headline": "3.11",
+    "band": "High risk of advanced fibrosis (above 2.67)",
+    "detail": "APRI 0.7"
+   }
+  },
+  {
+   "name": "ctx1 50y AST60 ALT70 plt140 → FIB4 2.561 APRI 1.071",
+   "inputs": {
+    "context": 1,
+    "age": 50,
+    "ast": 60,
+    "alt": 70,
+    "uln": 40,
+    "plt": 140
+   },
+   "expect": {
+    "headline": "2.56",
+    "band": "Indeterminate (1.3–2.67)",
+    "detail": "APRI 1.07"
+   }
+  }
+ ]
+}

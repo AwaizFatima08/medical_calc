@@ -1,0 +1,66 @@
+{
+ "id": "holliday_segar",
+ "source": "Holliday-Segar 1957; 4-2-1 check: 25 kg = 65 mL/h",
+ "cases": [
+  {
+   "name": "5 kg",
+   "inputs": {
+    "weight": 5
+   },
+   "expect": {
+    "headline": "21",
+    "band": "500 mL per 24 hours"
+   }
+  },
+  {
+   "name": "10 kg",
+   "inputs": {
+    "weight": 10
+   },
+   "expect": {
+    "headline": "42",
+    "band": "1000 mL per 24 hours"
+   }
+  },
+  {
+   "name": "15 kg",
+   "inputs": {
+    "weight": 15
+   },
+   "expect": {
+    "headline": "52",
+    "band": "1250 mL per 24 hours"
+   }
+  },
+  {
+   "name": "20 kg",
+   "inputs": {
+    "weight": 20
+   },
+   "expect": {
+    "headline": "63",
+    "band": "1500 mL per 24 hours"
+   }
+  },
+  {
+   "name": "25 kg",
+   "inputs": {
+    "weight": 25
+   },
+   "expect": {
+    "headline": "67",
+    "band": "1600 mL per 24 hours"
+   }
+  },
+  {
+   "name": "70 kg",
+   "inputs": {
+    "weight": 70
+   },
+   "expect": {
+    "headline": "104",
+    "band": "2500 mL per 24 hours"
+   }
+  }
+ ]
+}

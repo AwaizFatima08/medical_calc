@@ -1,0 +1,66 @@
+{
+ "id": "a1c_eag",
+ "source": "ADAG 2008: 7% = 154 mg/dL, 6% = 126 mg/dL",
+ "cases": [
+  {
+   "name": "5.0%",
+   "inputs": {
+    "a1c": 5.0
+   },
+   "expect": {
+    "headline": "97",
+    "band": "Normal range (below 5.7%)"
+   }
+  },
+  {
+   "name": "5.7%",
+   "inputs": {
+    "a1c": 5.7
+   },
+   "expect": {
+    "headline": "117",
+    "band": "Prediabetes range (5.7–6.4%)"
+   }
+  },
+  {
+   "name": "6.0%",
+   "inputs": {
+    "a1c": 6.0
+   },
+   "expect": {
+    "headline": "125",
+    "band": "Prediabetes range (5.7–6.4%)"
+   }
+  },
+  {
+   "name": "6.5%",
+   "inputs": {
+    "a1c": 6.5
+   },
+   "expect": {
+    "headline": "140",
+    "band": "Diabetes range (6.5% or more)"
+   }
+  },
+  {
+   "name": "7.0%",
+   "inputs": {
+    "a1c": 7.0
+   },
+   "expect": {
+    "headline": "154",
+    "band": "Diabetes range (6.5% or more)"
+   }
+  },
+  {
+   "name": "9.0%",
+   "inputs": {
+    "a1c": 9.0
+   },
+   "expect": {
+    "headline": "212",
+    "band": "Diabetes range (6.5% or more)"
+   }
+  }
+ ]
+}

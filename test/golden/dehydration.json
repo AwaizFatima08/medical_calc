@@ -1,0 +1,94 @@
+{
+ "id": "dehydration",
+ "source": "WHO 2005 / IMCI 2014 classification and plan volumes, by hand",
+ "cases": [
+  {
+   "name": "well → Plan A",
+   "inputs": {
+    "weight": 10,
+    "age": 18,
+    "general": 0,
+    "eyes": 0,
+    "drink": 0,
+    "pinch": 0
+   },
+   "expect": {
+    "headline": "No dehydration",
+    "band": "Plan A: treat at home"
+   }
+  },
+  {
+   "name": "one some-sign only → Plan A",
+   "inputs": {
+    "weight": 10,
+    "age": 18,
+    "general": 1,
+    "eyes": 0,
+    "drink": 0,
+    "pinch": 0
+   },
+   "expect": {
+    "headline": "No dehydration"
+   }
+  },
+  {
+   "name": "restless + sunken → Plan B 750 mL",
+   "inputs": {
+    "weight": 10,
+    "age": 18,
+    "general": 1,
+    "eyes": 1,
+    "drink": 0,
+    "pinch": 0
+   },
+   "expect": {
+    "headline": "Some dehydration",
+    "band": "Plan B: ORS in the clinic"
+   }
+  },
+  {
+   "name": "lethargic + slow pinch → some",
+   "inputs": {
+    "weight": 10,
+    "age": 18,
+    "general": 2,
+    "eyes": 0,
+    "drink": 0,
+    "pinch": 1
+   },
+   "expect": {
+    "headline": "Some dehydration"
+   }
+  },
+  {
+   "name": "lethargic + sunken → Plan C, 8 months",
+   "inputs": {
+    "weight": 8,
+    "age": 8,
+    "general": 2,
+    "eyes": 1,
+    "drink": 0,
+    "pinch": 0
+   },
+   "expect": {
+    "headline": "Severe dehydration",
+    "detail": "Under 12 months: 240 mL in the first 1 hour, then 560 mL"
+   }
+  },
+  {
+   "name": "drinks poorly + very slow pinch, 3 y",
+   "inputs": {
+    "weight": 14,
+    "age": 36,
+    "general": 0,
+    "eyes": 0,
+    "drink": 2,
+    "pinch": 2
+   },
+   "expect": {
+    "headline": "Severe dehydration",
+    "detail": "12 months or older: 420 mL in the first 30 minutes, then 980 mL"
+   }
+  }
+ ]
+}

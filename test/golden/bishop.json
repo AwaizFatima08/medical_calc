@@ -1,0 +1,75 @@
+{
+ "id": "bishop",
+ "source": "Bishop 1964 table, by hand",
+ "cases": [
+  {
+   "name": "all lowest = 0",
+   "inputs": {
+    "dilation": 0,
+    "effacement": 0,
+    "station": 0,
+    "consistency": 0,
+    "position": 0
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Unfavourable cervix (6 or less)"
+   }
+  },
+  {
+   "name": "1+1+2+1+1 = 6",
+   "inputs": {
+    "dilation": 1,
+    "effacement": 1,
+    "station": 2,
+    "consistency": 1,
+    "position": 1
+   },
+   "expect": {
+    "headline": "6",
+    "band": "Unfavourable cervix (6 or less)"
+   }
+  },
+  {
+   "name": "= 7",
+   "inputs": {
+    "dilation": 2,
+    "effacement": 1,
+    "station": 2,
+    "consistency": 1,
+    "position": 1
+   },
+   "expect": {
+    "headline": "7",
+    "band": "Intermediate (7)"
+   }
+  },
+  {
+   "name": "2+2+2+1+1 = 8",
+   "inputs": {
+    "dilation": 2,
+    "effacement": 2,
+    "station": 2,
+    "consistency": 1,
+    "position": 1
+   },
+   "expect": {
+    "headline": "8",
+    "band": "Favourable cervix (8 or more)"
+   }
+  },
+  {
+   "name": "max 13",
+   "inputs": {
+    "dilation": 3,
+    "effacement": 3,
+    "station": 3,
+    "consistency": 2,
+    "position": 2
+   },
+   "expect": {
+    "headline": "13"
+   }
+  }
+ ]
+}

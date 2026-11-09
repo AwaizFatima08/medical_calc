@@ -161,6 +161,33 @@ class CalcDefinition {
   final String? reviewedOn;
 }
 
+const _months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+/// e.g. "9 Nov 2026".
+String fmtDate(DateTime d) => '${d.day} ${_months[d.month - 1]} ${d.year}';
+
+DateTime dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
+
+/// Whole days from [a] to [b], ignoring time of day and DST.
+int daysBetween(DateTime a, DateTime b) => DateTime.utc(
+  b.year,
+  b.month,
+  b.day,
+).difference(DateTime.utc(a.year, a.month, a.day)).inDays;
+
 String fmt(double v, [int decimals = 1]) {
   final s = v.toStringAsFixed(decimals);
   return s.contains('.') ? s.replaceFirst(RegExp(r'\.?0+$'), '') : s;

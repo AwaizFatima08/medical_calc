@@ -9,8 +9,11 @@ import json, math, os, sys
 
 OUT = os.path.join(os.path.dirname(__file__), '..', 'test', 'golden')
 
+from decimal import Decimal, ROUND_HALF_UP
 def r(v, d=0):
-    s = f"{v:.{d}f}"
+    # Round half away from zero, like Dart's toStringAsFixed.
+    q = Decimal(1).scaleb(-d)
+    s = str(Decimal(repr(v)).quantize(q, rounding=ROUND_HALF_UP if v >= 0 else ROUND_HALF_UP))
     if '.' in s:
         s = s.rstrip('0').rstrip('.')
     return s
@@ -218,5 +221,80 @@ write('osmolality', '2Na + glu/18 + BUN/2.8, by hand', [
   {'name': '140, 90, 14 → 290', 'inputs': {'na': 140, 'glu': 90, 'bun': 14}, 'expect': {'headline': '290', 'band': 'Within usual range (275–295)'}},
   {'name': 'gap 300 − 290 = 10', 'inputs': {'na': 140, 'glu': 90, 'bun': 14, 'measured': 300}, 'expect': {'detail': 'Osmolal gap: 10'}},
   {'name': 'gap 320 − 290 = 30', 'inputs': {'na': 140, 'glu': 90, 'bun': 14, 'measured': 320}, 'expect': {'detail': 'Osmolal gap: 30'}},
+])
+
+# ================= Batch 3 =================
+import datetime as dt
+def d(y, m, dd): return dt.date(y, m, dd).isoformat()
+def ga_case(name, today, lmp=None, scan=None, w=None, days=None):
+    if lmp is None:
+        lmp_d = dt.date.fromisoformat(scan) - dt.timedelta(days=w*7 + (days or 0))
+        inputs = {'method': 1, 'scan': scan, 'scan_w': w, 'today': today}
+        if days is not None: inputs['scan_d'] = days
+    else:
+        lmp_d = dt.date.fromisoformat(lmp); inputs = {'method': 0, 'lmp': lmp, 'today': today}
+    ga = (dt.date.fromisoformat(today) - lmp_d).days
+    edd = lmp_d + dt.timedelta(days=280)
+    mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][edd.month-1]
+    return {'name': name, 'inputs': inputs, 'expect': {'headline': f'{ga//7}w {ga%7}d', 'detail': f'Due date: {edd.day} {mon} {edd.year}'}}
+write('gestational_age', 'Naegele rule LMP + 280 days; Python datetime reference', [
+  ga_case('LMP 1 Jan 2026, today 9 Nov 2026', d(2026,11,9), lmp=d(2026,1,1)),
+  ga_case('LMP 15 Jun 2026, today 9 Nov 2026', d(2026,11,9), lmp=d(2026,6,15)),
+  ga_case('across leap day: LMP 1 Feb 2028', d(2028,5,1), lmp=d(2028,2,1)),
+  ga_case('scan 1 Sep 2026 at 12w 3d', d(2026,11,9), scan=d(2026,9,1), w=12, days=3),
+  ga_case('scan without days', d(2026,11,9), scan=d(2026,10,1), w=20),
+])
+def bishop(dl, ef, st, co, po): return {'dilation': dl, 'effacement': ef, 'station': st, 'consistency': co, 'position': po}
+write('bishop', 'Bishop 1964 table, by hand', [
+  {'name': 'all lowest = 0', 'inputs': bishop(0,0,0,0,0), 'expect': {'headline': '0', 'band': 'Unfavourable cervix (6 or less)'}},
+  {'name': '1+1+2+1+1 = 6', 'inputs': bishop(1,1,2,1,1), 'expect': {'headline': '6', 'band': 'Unfavourable cervix (6 or less)'}},
+  {'name': '= 7', 'inputs': bishop(2,1,2,1,1), 'expect': {'headline': '7', 'band': 'Intermediate (7)'}},
+  {'name': '2+2+2+1+1 = 8', 'inputs': bishop(2,2,2,1,1), 'expect': {'headline': '8', 'band': 'Favourable cervix (8 or more)'}},
+  {'name': 'max 13', 'inputs': bishop(3,3,3,2,2), 'expect': {'headline': '13'}},
+])
+def hs(kg):
+    day = 100*kg if kg <= 10 else 1000+50*(kg-10) if kg <= 20 else 1500+20*(kg-20)
+    return {'name': f'{kg} kg', 'inputs': {'weight': kg}, 'expect': {'headline': r(day/24), 'band': f'{r(day)} mL per 24 hours'}}
+write('holliday_segar', 'Holliday-Segar 1957; 4-2-1 check: 25 kg = 65 mL/h', [hs(5), hs(10), hs(15), hs(20), hs(25), hs(70)])
+def pk(kg, tbsa=None, regions=()):
+    inp = {'weight': kg}
+    if tbsa is not None: inp.update({'method': 0, 'tbsa': tbsa}); t = tbsa
+    else:
+        pts = {'head':9,'r_arm':9,'l_arm':9,'front':18,'back':18,'r_leg':18,'l_leg':18,'perineum':1}
+        inp['method'] = 1; t = 0
+        for k in pts: inp[k] = k in regions; t += pts[k] if k in regions else 0
+    tot = 4*kg*t
+    return {'name': f'{kg} kg {t}%', 'inputs': inp, 'expect': {'headline': r(tot), 'band': f'TBSA {r(t)}%', 'detail': f'First 8 hours: {r(tot/2)} mL ({r(tot/16)} mL/h)'}}
+write('parkland', 'Parkland 4 mL/kg/%TBSA; classic example 70 kg 30% = 8400 mL', [pk(70, 30), pk(80, regions=('front','r_arm')), pk(20, 12)])
+def dh(kg, months, g, e, dr, p): return {'weight': kg, 'age': months, 'general': g, 'eyes': e, 'drink': dr, 'pinch': p}
+write('dehydration', 'WHO 2005 / IMCI 2014 classification and plan volumes, by hand', [
+  {'name': 'well → Plan A', 'inputs': dh(10, 18, 0,0,0,0), 'expect': {'headline': 'No dehydration', 'band': 'Plan A: treat at home'}},
+  {'name': 'one some-sign only → Plan A', 'inputs': dh(10, 18, 1,0,0,0), 'expect': {'headline': 'No dehydration'}},
+  {'name': 'restless + sunken → Plan B 750 mL', 'inputs': dh(10, 18, 1,1,0,0), 'expect': {'headline': 'Some dehydration', 'band': 'Plan B: ORS in the clinic'}},
+  {'name': 'lethargic + slow pinch → some', 'inputs': dh(10, 18, 2,0,0,1), 'expect': {'headline': 'Some dehydration'}},
+  {'name': 'lethargic + sunken → Plan C, 8 months', 'inputs': dh(8, 8, 2,1,0,0), 'expect': {'headline': 'Severe dehydration', 'detail': 'Under 12 months: 240 mL in the first 1 hour, then 560 mL'}},
+  {'name': 'drinks poorly + very slow pinch, 3 y', 'inputs': dh(14, 36, 0,0,2,2), 'expect': {'headline': 'Severe dehydration', 'detail': '12 months or older: 420 mL in the first 30 minutes, then 980 mL'}},
+])
+def fib(ctx, age, ast, alt, uln, plt):
+    f = age*ast/(plt*math.sqrt(alt)); a = ast/uln/plt*100
+    masld = ctx == 1
+    low = (2.0 if age >= 65 else 1.3) if masld else 1.45; high = 2.67 if masld else 3.25
+    band = (f'Low risk of advanced fibrosis (below {r(low,2)})' if f < low else f'High risk of advanced fibrosis (above {r(high,2)})' if f > high
+            else f'Indeterminate ({r(low,2)}–{r(high,2)})')
+    return {'name': f'ctx{ctx} {age}y AST{ast} ALT{alt} plt{plt} → FIB4 {f:.3f} APRI {a:.3f}',
+            'inputs': {'context': ctx, 'age': age, 'ast': ast, 'alt': alt, 'uln': uln, 'plt': plt},
+            'expect': {'headline': r(f, 2), 'band': band, 'detail': f'APRI {r(a, 2)}'}}
+write('apri_fib4', 'Sterling 2006 / Wai 2003 formulas, reference implementation', [
+  fib(0, 50, 40, 40, 40, 250), fib(0, 55, 90, 80, 40, 120), fib(0, 60, 120, 60, 40, 60),
+  fib(1, 45, 30, 50, 40, 220), fib(1, 70, 45, 40, 40, 160), fib(1, 50, 60, 70, 40, 140)])
+def a1c(x):
+    e = 28.7*x - 46.7
+    band = 'Diabetes range (6.5% or more)' if x >= 6.5 else 'Prediabetes range (5.7–6.4%)' if x >= 5.7 else 'Normal range (below 5.7%)'
+    return {'name': f'{x}%', 'inputs': {'a1c': x}, 'expect': {'headline': r(e), 'band': band}}
+write('a1c_eag', 'ADAG 2008: 7% = 154 mg/dL, 6% = 126 mg/dL', [a1c(5.0), a1c(5.7), a1c(6.0), a1c(6.5), a1c(7.0), a1c(9.0)])
+write('drip_rate', 'mL/h = V/t; drops/min = mL/h × factor / 60; by hand', [
+  {'name': '1000 mL over 8 h, 20 drop set', 'inputs': {'volume': 1000, 'time': 8, 'factor': 20}, 'expect': {'headline': '125', 'band': '42 drops/min'}},
+  {'name': '500 mL over 4 h, 15 drop set', 'inputs': {'volume': 500, 'time': 4, 'factor': 15}, 'expect': {'headline': '125', 'band': '31 drops/min'}},
+  {'name': '100 mL over 30 min, 60 micro', 'inputs': {'volume': 100, 'time': 0.5, 'factor': 60}, 'expect': {'headline': '200', 'band': '200 drops/min'}},
 ])
 print('golden files written')
