@@ -6,6 +6,7 @@ import '../../app/ads.dart';
 import '../../app/config.dart';
 import '../../app/settings.dart';
 import '../../calc/catalog.dart';
+import '../../calc/registry.dart';
 import '../../shared/readable_width.dart';
 
 /// Home for the chosen mode: search, favourites, recents, categories (S4).
@@ -155,7 +156,9 @@ class _ToolTile extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 6),
       child: ListTile(
         title: Text(tool.name),
-        subtitle: Text(tool.summary),
+        subtitle: Text(
+          isWorking(tool.id) ? tool.summary : '${tool.summary} · coming soon',
+        ),
         trailing: IconButton(
           tooltip: fav ? 'Remove from favourites' : 'Add to favourites',
           icon: Icon(fav ? Icons.star : Icons.star_border),

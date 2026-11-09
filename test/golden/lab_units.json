@@ -1,0 +1,146 @@
+{
+ "id": "lab_units",
+ "source": "Standard SI conversion factors (e.g. AMA Manual of Style SI table); HbA1c by IFCC–NGSP master equation",
+ "cases": [
+  {
+   "name": "creatinine 88.42 µmol/L → mg/dL",
+   "quantity": "creatinine",
+   "unit": "µmol/L",
+   "value": 88.42,
+   "base": 1.0
+  },
+  {
+   "name": "glucose 5.5 mmol/L → mg/dL",
+   "quantity": "glucose",
+   "unit": "mmol/L",
+   "value": 5.5,
+   "base": 99.088
+  },
+  {
+   "name": "urea 42.8 urea mg/dL → BUN mg/dL",
+   "quantity": "urea",
+   "unit": "urea mg/dL",
+   "value": 42.8,
+   "base": 20.0
+  },
+  {
+   "name": "urea 7.0 urea mmol/L → BUN mg/dL",
+   "quantity": "urea",
+   "unit": "urea mmol/L",
+   "value": 7.0,
+   "base": 19.6
+  },
+  {
+   "name": "albumin 40 g/L → g/dL",
+   "quantity": "albumin",
+   "unit": "g/L",
+   "value": 40,
+   "base": 4.0
+  },
+  {
+   "name": "calcium 2.5 mmol/L → mg/dL",
+   "quantity": "calcium",
+   "unit": "mmol/L",
+   "value": 2.5,
+   "base": 10.02
+  },
+  {
+   "name": "bilirubin 17.1 µmol/L → mg/dL",
+   "quantity": "bilirubin",
+   "unit": "µmol/L",
+   "value": 17.1,
+   "base": 1.0
+  },
+  {
+   "name": "cholesterol 5.0 mmol/L → mg/dL",
+   "quantity": "cholesterol",
+   "unit": "mmol/L",
+   "value": 5.0,
+   "base": 193.35
+  },
+  {
+   "name": "triglycerides 1.7 mmol/L → mg/dL",
+   "quantity": "triglycerides",
+   "unit": "mmol/L",
+   "value": 1.7,
+   "base": 150.569
+  },
+  {
+   "name": "haemoglobin 120 g/L → g/dL",
+   "quantity": "haemoglobin",
+   "unit": "g/L",
+   "value": 120,
+   "base": 12.0
+  },
+  {
+   "name": "hba1c 53 mmol/mol → %",
+   "quantity": "hba1c",
+   "unit": "mmol/mol",
+   "value": 53,
+   "base": 6.999
+  },
+  {
+   "name": "vitamin_d 75 nmol/L → ng/mL",
+   "quantity": "vitamin_d",
+   "unit": "nmol/L",
+   "value": 75,
+   "base": 30.048
+  },
+  {
+   "name": "uric_acid 357 µmol/L → mg/dL",
+   "quantity": "uric_acid",
+   "unit": "µmol/L",
+   "value": 357,
+   "base": 6.002
+  },
+  {
+   "name": "magnesium 1.0 mmol/L → mg/dL",
+   "quantity": "magnesium",
+   "unit": "mmol/L",
+   "value": 1.0,
+   "base": 2.431
+  },
+  {
+   "name": "phosphate 1.0 mmol/L → mg/dL",
+   "quantity": "phosphate",
+   "unit": "mmol/L",
+   "value": 1.0,
+   "base": 3.097
+  },
+  {
+   "name": "iron 20 µmol/L → µg/dL",
+   "quantity": "iron",
+   "unit": "µmol/L",
+   "value": 20,
+   "base": 111.7
+  },
+  {
+   "name": "lactate 2 mmol/L → mg/dL",
+   "quantity": "lactate",
+   "unit": "mmol/L",
+   "value": 2,
+   "base": 18.016
+  },
+  {
+   "name": "ammonia 30 µmol/L → µg/dL",
+   "quantity": "ammonia",
+   "unit": "µmol/L",
+   "value": 30,
+   "base": 51.09
+  },
+  {
+   "name": "vitamin_b12 200 pmol/L → pg/mL",
+   "quantity": "vitamin_b12",
+   "unit": "pmol/L",
+   "value": 200,
+   "base": 271.0
+  },
+  {
+   "name": "free_t4 12.87 pmol/L → ng/dL",
+   "quantity": "free_t4",
+   "unit": "pmol/L",
+   "value": 12.87,
+   "base": 1.0
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "id": "corrected_sodium",
+ "source": "Hillier 1999 (2.4) and Katz 1973 (1.6), by hand",
+ "cases": [
+  {
+   "name": "Na 130, glucose 600 → Hillier 142, Katz 138",
+   "inputs": {
+    "na": 130,
+    "glu": 600
+   },
+   "expect": {
+    "headline": "142",
+    "detail": "Katz (1.6 per 100 mg/dL): 138"
+   }
+  },
+  {
+   "name": "Na 125, glucose 100 → 125",
+   "inputs": {
+    "na": 125,
+    "glu": 100
+   },
+   "expect": {
+    "headline": "125",
+    "band": "Low (below 135)"
+   }
+  },
+  {
+   "name": "glucose below 100 → no correction",
+   "inputs": {
+    "na": 140,
+    "glu": 80
+   },
+   "expect": {
+    "headline": "140"
+   }
+  }
+ ]
+}

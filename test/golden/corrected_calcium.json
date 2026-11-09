@@ -1,0 +1,39 @@
+{
+ "id": "corrected_calcium",
+ "source": "Payne 1973, by hand",
+ "cases": [
+  {
+   "name": "Ca 8.0, alb 2.5 → 9.2",
+   "inputs": {
+    "ca": 8.0,
+    "alb": 2.5
+   },
+   "expect": {
+    "headline": "9.2",
+    "band": "Within usual range (8.5–10.5)"
+   }
+  },
+  {
+   "name": "Ca 7.0, alb 3.5 → 7.4",
+   "inputs": {
+    "ca": 7.0,
+    "alb": 3.5
+   },
+   "expect": {
+    "headline": "7.4",
+    "band": "Low (below 8.5 mg/dL)"
+   }
+  },
+  {
+   "name": "Ca 10.2, alb 3.0 → 11",
+   "inputs": {
+    "ca": 10.2,
+    "alb": 3.0
+   },
+   "expect": {
+    "headline": "11",
+    "band": "High (above 10.5 mg/dL)"
+   }
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+ "id": "news2",
+ "source": "RCP NEWS2 chart 2017, by hand",
+ "cases": [
+  {
+   "name": "all normal",
+   "inputs": {
+    "rr": 16,
+    "spo2": 98,
+    "scale": 0,
+    "o2": 0,
+    "sbp": 120,
+    "pulse": 70,
+    "acvpu": 0,
+    "temp": 37.0
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low clinical risk (0)"
+   }
+  },
+  {
+   "name": "RR 22, pulse 95, temp 38.5 = 4",
+   "inputs": {
+    "rr": 22,
+    "spo2": 96,
+    "scale": 0,
+    "o2": 0,
+    "sbp": 120,
+    "pulse": 95,
+    "acvpu": 0,
+    "temp": 38.5
+   },
+   "expect": {
+    "headline": "4",
+    "band": "Low clinical risk (1–4)"
+   }
+  },
+  {
+   "name": "single 3 (RR 26)",
+   "inputs": {
+    "rr": 26,
+    "spo2": 98,
+    "scale": 0,
+    "o2": 0,
+    "sbp": 120,
+    "pulse": 70,
+    "acvpu": 0,
+    "temp": 37.0
+   },
+   "expect": {
+    "headline": "3",
+    "band": "Low–medium clinical risk (a single parameter scored 3)"
+   }
+  },
+  {
+   "name": "O2 + SpO2 94 + SBP 105 + pulse 112 = 2+1+1+2 = 6",
+   "inputs": {
+    "rr": 18,
+    "spo2": 94,
+    "scale": 0,
+    "o2": 2,
+    "sbp": 105,
+    "pulse": 112,
+    "acvpu": 0,
+    "temp": 37.0
+   },
+   "expect": {
+    "headline": "6",
+    "band": "Medium clinical risk (5–6)"
+   }
+  },
+  {
+   "name": "sick: RR 30, SpO2 90, O2, SBP 88, P 135, confused, 39.5 = 3+3+2+3+3+3+2 = 19",
+   "inputs": {
+    "rr": 30,
+    "spo2": 90,
+    "scale": 0,
+    "o2": 2,
+    "sbp": 88,
+    "pulse": 135,
+    "acvpu": 3,
+    "temp": 39.5
+   },
+   "expect": {
+    "headline": "19",
+    "band": "High clinical risk (7 or more)"
+   }
+  },
+  {
+   "name": "scale 2: SpO2 90 on air = 0",
+   "inputs": {
+    "rr": 16,
+    "spo2": 90,
+    "scale": 1,
+    "o2": 0,
+    "sbp": 120,
+    "pulse": 70,
+    "acvpu": 0,
+    "temp": 37.0
+   },
+   "expect": {
+    "headline": "0"
+   }
+  },
+  {
+   "name": "scale 2: SpO2 97 on O2 = 3 + O2 2 = 5",
+   "inputs": {
+    "rr": 16,
+    "spo2": 97,
+    "scale": 1,
+    "o2": 2,
+    "sbp": 120,
+    "pulse": 70,
+    "acvpu": 0,
+    "temp": 37.0
+   },
+   "expect": {
+    "headline": "5"
+   }
+  },
+  {
+   "name": "boundaries: RR 8, SBP 220, temp 35.0",
+   "inputs": {
+    "rr": 8,
+    "spo2": 96,
+    "scale": 0,
+    "o2": 0,
+    "sbp": 220,
+    "pulse": 70,
+    "acvpu": 0,
+    "temp": 35.0
+   },
+   "expect": {
+    "headline": "9"
+   }
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "id": "gcs",
+ "source": "Teasdale 1974, by hand",
+ "cases": [
+  {
+   "name": "E4 V5 M6",
+   "inputs": {
+    "e": 4,
+    "v": 5,
+    "m": 6
+   },
+   "expect": {
+    "headline": "15",
+    "band": "Mild (13–15)"
+   }
+  },
+  {
+   "name": "E3 V4 M6 = 13",
+   "inputs": {
+    "e": 3,
+    "v": 4,
+    "m": 6
+   },
+   "expect": {
+    "headline": "13",
+    "band": "Mild (13–15)"
+   }
+  },
+  {
+   "name": "E2 V3 M5 = 10",
+   "inputs": {
+    "e": 2,
+    "v": 3,
+    "m": 5
+   },
+   "expect": {
+    "headline": "10",
+    "band": "Moderate (9–12)"
+   }
+  },
+  {
+   "name": "E2 V2 M4 = 8",
+   "inputs": {
+    "e": 2,
+    "v": 2,
+    "m": 4
+   },
+   "expect": {
+    "headline": "8",
+    "band": "Severe (8 or less)"
+   }
+  },
+  {
+   "name": "E1 V1 M1 = 3",
+   "inputs": {
+    "e": 1,
+    "v": 1,
+    "m": 1
+   },
+   "expect": {
+    "headline": "3",
+    "band": "Severe (8 or less)"
+   }
+  }
+ ]
+}

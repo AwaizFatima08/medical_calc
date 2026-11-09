@@ -1,0 +1,30 @@
+{
+ "id": "qsofa",
+ "source": "Seymour 2016, by hand",
+ "cases": [
+  {
+   "name": "none",
+   "inputs": {
+    "rr": false,
+    "mental": false,
+    "sbp": false
+   },
+   "expect": {
+    "headline": "0",
+    "band": "qSOFA negative"
+   }
+  },
+  {
+   "name": "RR + SBP",
+   "inputs": {
+    "rr": true,
+    "mental": false,
+    "sbp": true
+   },
+   "expect": {
+    "headline": "2",
+    "band": "qSOFA positive"
+   }
+  }
+ ]
+}

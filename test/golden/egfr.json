@@ -1,0 +1,102 @@
+{
+ "id": "egfr",
+ "source": "Reference implementation of Inker 2021 equation (tool/golden_ref.py); spot-check against kidney.org calculator during review",
+ "cases": [
+  {
+   "name": "Scr 0.8 mg/dL, 50 y, F",
+   "inputs": {
+    "scr": 0.8,
+    "age": 50,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "90",
+    "band": "G2: mildly decreased"
+   }
+  },
+  {
+   "name": "Scr 1.0 mg/dL, 60 y, M",
+   "inputs": {
+    "scr": 1.0,
+    "age": 60,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "86",
+    "band": "G2: mildly decreased"
+   }
+  },
+  {
+   "name": "Scr 0.7 mg/dL, 30 y, F",
+   "inputs": {
+    "scr": 0.7,
+    "age": 30,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "119",
+    "band": "G1: normal or high"
+   }
+  },
+  {
+   "name": "Scr 0.9 mg/dL, 40 y, M",
+   "inputs": {
+    "scr": 0.9,
+    "age": 40,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "111",
+    "band": "G1: normal or high"
+   }
+  },
+  {
+   "name": "Scr 2.5 mg/dL, 70 y, M",
+   "inputs": {
+    "scr": 2.5,
+    "age": 70,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "27",
+    "band": "G4: severely decreased"
+   }
+  },
+  {
+   "name": "Scr 1.4 mg/dL, 45 y, F",
+   "inputs": {
+    "scr": 1.4,
+    "age": 45,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "47",
+    "band": "G3a: mildly to moderately decreased"
+   }
+  },
+  {
+   "name": "Scr 6.0 mg/dL, 55 y, M",
+   "inputs": {
+    "scr": 6.0,
+    "age": 55,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "10",
+    "band": "G5: kidney failure"
+   }
+  },
+  {
+   "name": "Scr 0.5 mg/dL, 25 y, M",
+   "inputs": {
+    "scr": 0.5,
+    "age": 25,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "145",
+    "band": "G1: normal or high"
+   }
+  }
+ ]
+}

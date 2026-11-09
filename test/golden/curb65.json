@@ -1,0 +1,107 @@
+{
+ "id": "curb65",
+ "source": "Lim 2003 CURB-65; urea >7 mmol/L = BUN >19.6 mg/dL; by hand",
+ "cases": [
+  {
+   "name": "healthy 40 y, BUN 12",
+   "inputs": {
+    "confusion": false,
+    "rr": 18,
+    "sbp": 120,
+    "dbp": 80,
+    "age": 40,
+    "urea": 12
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low severity (CURB-65 0–1)"
+   }
+  },
+  {
+   "name": "BUN exactly 19.6 does not count",
+   "inputs": {
+    "confusion": false,
+    "rr": 18,
+    "sbp": 120,
+    "dbp": 80,
+    "age": 40,
+    "urea": 19.6
+   },
+   "expect": {
+    "headline": "0"
+   }
+  },
+  {
+   "name": "BUN 20 counts (urea mg/dL 42.8)",
+   "inputs": {
+    "confusion": false,
+    "rr": 18,
+    "sbp": 120,
+    "dbp": 80,
+    "age": 40,
+    "urea": 20
+   },
+   "expect": {
+    "headline": "1"
+   }
+  },
+  {
+   "name": "age 70, RR 30",
+   "inputs": {
+    "confusion": false,
+    "rr": 30,
+    "sbp": 120,
+    "dbp": 80,
+    "age": 70,
+    "urea": 10
+   },
+   "expect": {
+    "headline": "2",
+    "band": "Moderate severity (CURB-65 2)"
+   }
+  },
+  {
+   "name": "DBP 60 counts",
+   "inputs": {
+    "confusion": true,
+    "rr": 32,
+    "sbp": 100,
+    "dbp": 60,
+    "age": 80,
+    "urea": 25
+   },
+   "expect": {
+    "headline": "5",
+    "band": "High severity (CURB-65 3–5)"
+   }
+  },
+  {
+   "name": "CRB-65 without urea: age 70",
+   "inputs": {
+    "confusion": false,
+    "rr": 18,
+    "sbp": 120,
+    "dbp": 80,
+    "age": 70
+   },
+   "expect": {
+    "headline": "1",
+    "band": "Intermediate risk (CRB-65 1–2)"
+   }
+  },
+  {
+   "name": "CRB-65 0",
+   "inputs": {
+    "confusion": false,
+    "rr": 18,
+    "sbp": 120,
+    "dbp": 80,
+    "age": 30
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low risk (CRB-65 0)"
+   }
+  }
+ ]
+}

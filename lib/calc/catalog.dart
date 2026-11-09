@@ -1,7 +1,7 @@
 // Release 1 tool list (design doc Section 4). Pure Dart: no Flutter imports.
 //
-// A tool is "available" only after its formula is verified against the
-// primary source, has golden vectors and a clinician sign-off (design §9).
+// A tool works once it has a definition in registry.dart; it shows
+// "Review pending" until Homi signs it off (design §9).
 
 enum ToolMode { doctor, public }
 
@@ -19,7 +19,6 @@ class ToolInfo {
     required this.category,
     required this.mode,
     this.aliases = const [],
-    this.available = false,
   });
 
   final String id;
@@ -28,7 +27,6 @@ class ToolInfo {
   final ToolCategory category;
   final ToolMode mode;
   final List<String> aliases;
-  final bool available;
 
   bool matches(String query) {
     final q = query.trim().toLowerCase();

@@ -34,7 +34,7 @@ Every result is a **published formula whose output a clinician can check**, show
 | L9 | Free with **AdMob** ads; AdMob account **homilabs.smc@gmail.com** (Section 6.1) | Homi, 9 Nov |
 | L10 | Google Play countries: **all except the EU** | Homi, 9 Nov |
 | L11 | Release 1 = full Section 4 list, built and reviewed in batches (Section 11) | Homi, 9 Nov |
-| L12 | Each calculator is signed off by a doctor Homi will name | Homi, 9 Nov |
+| L12 | Homi signs off every calculator after the whole app is built; results show "Review pending" until then | Homi, 9 Nov |
 
 ---
 
@@ -283,13 +283,13 @@ No network use by the app itself; only the ad SDK (and Crashlytics, if chosen) g
 ## 11. Build phases (one piece at a time, verify, then next)
 
 1. **Skeleton** — project, theme, onboarding flow, mode storage, empty homes. Check on a phone.
-2. **Engine + first 5 tools** — engine, units (with the D28 lab converter, since every lab field depends on it), golden-vector runner, generic calculator screen; BMI, MAP, eGFR CKD-EPI 2021, Cockcroft-Gault, CHA2DS2-VA. Clinician review of these 5 before continuing — this proves the review process.
+2. **Engine + first 5 tools** — engine, units (with the D28 lab converter, since every lab field depends on it), golden-vector runner, generic calculator screen; BMI, MAP, eGFR CKD-EPI 2021, Cockcroft-Gault, CHA2DS2-VA.
 3. **Doctor batch A** — HAS-BLED, Wells/PERC, CURB-65, NEWS2, qSOFA, GCS, QTc, electrolytes, BSA/IBW.
 4. **Doctor batch B (Pakistan)** — APRI/FIB-4, dengue, IDF-DAR Ramadan, HbA1c↔eAG, obstetric, paeds fluids, Parkland, WHO growth/MUAC, IMCI, drip rate.
 5. **Public mode** — P1–P10 with plain-language results and the red-flag screen; plain-English user testing.
 6. **Release prep** — About, sources, privacy policy page, store listing, screenshots, signing, Play declarations, `release-check.sh` style checks.
 
-Each batch: source check → golden vectors → code → tests → clinician review → commit.
+Each batch: source check → golden vectors → code → tests → device test → commit. Clinician review (Homi) of all tools after the last batch, before release.
 
 ---
 
@@ -331,7 +331,7 @@ Each batch: source check → golden vectors → code → tests → clinician rev
 
 | # | Question | Decision |
 |---|---|---|
-| 14.2 | Clinical reviewer | A doctor Homi will name (L12). Needed before the first 5 tools are signed off (Section 11, step 2); a second doctor for children's and pregnancy tools is advised |
+| 14.2 | Clinical reviewer | **Homi reviews every calculator once the whole app is built** (9 Nov, replaces per-batch sign-off). Until signed off in `docs/calculator-register.md`, each result shows "Review pending"; no Play release before sign-off of every tool |
 | 14.4 | Money | Free with AdMob ads, account homilabs.smc@gmail.com (L9, Section 6.1) |
 | 14.6 | GCS commercial use | Follows from 14.4: email the GCS team (glasgowcomascale.org) before D11 ships |
 | 14.7 | Countries | All except the EU (L10) |

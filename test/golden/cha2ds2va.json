@@ -1,0 +1,159 @@
+{
+ "id": "cha2ds2va",
+ "source": "Point tables from Lip 2010 (VASc) and ESC 2024 (VA), worked by hand",
+ "cases": [
+  {
+   "name": "VA: nothing",
+   "inputs": {
+    "chf": false,
+    "htn": false,
+    "age": 0,
+    "dm": false,
+    "stroke": false,
+    "vasc": false,
+    "version": 0,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low risk"
+   }
+  },
+  {
+   "name": "VA: female only (sex ignored)",
+   "inputs": {
+    "chf": false,
+    "htn": false,
+    "age": 0,
+    "dm": false,
+    "stroke": false,
+    "vasc": false,
+    "version": 0,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low risk"
+   }
+  },
+  {
+   "name": "VA: hypertension",
+   "inputs": {
+    "chf": false,
+    "htn": true,
+    "age": 0,
+    "dm": false,
+    "stroke": false,
+    "vasc": false,
+    "version": 0,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "1",
+    "band": "Intermediate risk"
+   }
+  },
+  {
+   "name": "VA: age ≥75",
+   "inputs": {
+    "chf": false,
+    "htn": false,
+    "age": 2,
+    "dm": false,
+    "stroke": false,
+    "vasc": false,
+    "version": 0,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "2",
+    "band": "High risk"
+   }
+  },
+  {
+   "name": "VA: all items",
+   "inputs": {
+    "chf": true,
+    "htn": true,
+    "age": 2,
+    "dm": true,
+    "stroke": true,
+    "vasc": true,
+    "version": 0,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "8",
+    "band": "High risk"
+   }
+  },
+  {
+   "name": "VASc: female only",
+   "inputs": {
+    "chf": false,
+    "htn": false,
+    "age": 0,
+    "dm": false,
+    "stroke": false,
+    "vasc": false,
+    "version": 1,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "1",
+    "band": "Low risk"
+   }
+  },
+  {
+   "name": "VASc: female + HTN",
+   "inputs": {
+    "chf": false,
+    "htn": true,
+    "age": 0,
+    "dm": false,
+    "stroke": false,
+    "vasc": false,
+    "version": 1,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "2",
+    "band": "Intermediate risk"
+   }
+  },
+  {
+   "name": "VASc: male HTN + DM",
+   "inputs": {
+    "chf": false,
+    "htn": true,
+    "age": 0,
+    "dm": true,
+    "stroke": false,
+    "vasc": false,
+    "version": 1,
+    "sex": 0
+   },
+   "expect": {
+    "headline": "2",
+    "band": "High risk"
+   }
+  },
+  {
+   "name": "VASc: all items, female",
+   "inputs": {
+    "chf": true,
+    "htn": true,
+    "age": 2,
+    "dm": true,
+    "stroke": true,
+    "vasc": true,
+    "version": 1,
+    "sex": 1
+   },
+   "expect": {
+    "headline": "9",
+    "band": "High risk"
+   }
+  }
+ ]
+}

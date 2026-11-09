@@ -1,0 +1,42 @@
+{
+ "id": "osmolality",
+ "source": "2Na + glu/18 + BUN/2.8, by hand",
+ "cases": [
+  {
+   "name": "140, 90, 14 → 290",
+   "inputs": {
+    "na": 140,
+    "glu": 90,
+    "bun": 14
+   },
+   "expect": {
+    "headline": "290",
+    "band": "Within usual range (275–295)"
+   }
+  },
+  {
+   "name": "gap 300 − 290 = 10",
+   "inputs": {
+    "na": 140,
+    "glu": 90,
+    "bun": 14,
+    "measured": 300
+   },
+   "expect": {
+    "detail": "Osmolal gap: 10"
+   }
+  },
+  {
+   "name": "gap 320 − 290 = 30",
+   "inputs": {
+    "na": 140,
+    "glu": 90,
+    "bun": 14,
+    "measured": 320
+   },
+   "expect": {
+    "detail": "Osmolal gap: 30"
+   }
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "id": "qtc",
+ "source": "Bazett and Fridericia formulas; AHA/ACCF/HRS 2009 limits; reference implementation",
+ "cases": [
+  {
+   "name": "QT 400 HR 60 sex 0 f 0 → 400.0",
+   "inputs": {
+    "qt": 400,
+    "hr": 60,
+    "sex": 0,
+    "formula": 0
+   },
+   "expect": {
+    "headline": "400",
+    "band": "Within normal limits"
+   }
+  },
+  {
+   "name": "QT 400 HR 80 sex 0 f 0 → 461.9",
+   "inputs": {
+    "qt": 400,
+    "hr": 80,
+    "sex": 0,
+    "formula": 0
+   },
+   "expect": {
+    "headline": "462",
+    "band": "Prolonged (male limit 450 ms)"
+   }
+  },
+  {
+   "name": "QT 400 HR 80 sex 1 f 0 → 461.9",
+   "inputs": {
+    "qt": 400,
+    "hr": 80,
+    "sex": 1,
+    "formula": 0
+   },
+   "expect": {
+    "headline": "462",
+    "band": "Prolonged (female limit 460 ms)"
+   }
+  },
+  {
+   "name": "QT 420 HR 80 sex 1 f 1 → 462.3",
+   "inputs": {
+    "qt": 420,
+    "hr": 80,
+    "sex": 1,
+    "formula": 1
+   },
+   "expect": {
+    "headline": "462",
+    "band": "Prolonged (female limit 460 ms)"
+   }
+  },
+  {
+   "name": "QT 440 HR 100 sex 0 f 0 → 568.0",
+   "inputs": {
+    "qt": 440,
+    "hr": 100,
+    "sex": 0,
+    "formula": 0
+   },
+   "expect": {
+    "headline": "568",
+    "band": "500 ms or more: markedly prolonged"
+   }
+  },
+  {
+   "name": "QT 360 HR 120 sex 0 f 1 → 453.6",
+   "inputs": {
+    "qt": 360,
+    "hr": 120,
+    "sex": 0,
+    "formula": 1
+   },
+   "expect": {
+    "headline": "454",
+    "band": "Prolonged (male limit 450 ms)"
+   }
+  },
+  {
+   "name": "QT 380 HR 75 sex 0 f 0 → 424.9",
+   "inputs": {
+    "qt": 380,
+    "hr": 75,
+    "sex": 0,
+    "formula": 0
+   },
+   "expect": {
+    "headline": "425",
+    "band": "Within normal limits"
+   }
+  }
+ ]
+}

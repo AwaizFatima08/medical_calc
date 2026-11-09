@@ -1,0 +1,50 @@
+{
+ "id": "map",
+ "source": "MAP = DBP + (SBP−DBP)/3, worked by hand",
+ "cases": [
+  {
+   "name": "120/80",
+   "inputs": {
+    "sbp": 120,
+    "dbp": 80
+   },
+   "expect": {
+    "headline": "93",
+    "band": "At or above 65 mmHg"
+   }
+  },
+  {
+   "name": "80/50",
+   "inputs": {
+    "sbp": 80,
+    "dbp": 50
+   },
+   "expect": {
+    "headline": "60",
+    "band": "Below 65 mmHg"
+   }
+  },
+  {
+   "name": "90/52 → 64.67",
+   "inputs": {
+    "sbp": 90,
+    "dbp": 52
+   },
+   "expect": {
+    "headline": "65",
+    "band": "Below 65 mmHg"
+   }
+  },
+  {
+   "name": "93/51 → 65",
+   "inputs": {
+    "sbp": 93,
+    "dbp": 51
+   },
+   "expect": {
+    "headline": "65",
+    "band": "At or above 65 mmHg"
+   }
+  }
+ ]
+}

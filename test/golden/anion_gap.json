@@ -1,0 +1,44 @@
+{
+ "id": "anion_gap",
+ "source": "AG = Na − (Cl + HCO3); Figge correction; by hand",
+ "cases": [
+  {
+   "name": "140/104/24 = 12",
+   "inputs": {
+    "na": 140,
+    "cl": 104,
+    "hco3": 24
+   },
+   "expect": {
+    "headline": "12",
+    "band": "Within usual range (3–12)"
+   }
+  },
+  {
+   "name": "DKA 135/100/10 = 25",
+   "inputs": {
+    "na": 135,
+    "cl": 100,
+    "hco3": 10
+   },
+   "expect": {
+    "headline": "25",
+    "band": "Raised (above 12)"
+   }
+  },
+  {
+   "name": "AG 10 with albumin 2.0 → corrected 15",
+   "inputs": {
+    "na": 140,
+    "cl": 106,
+    "hco3": 24,
+    "alb": 2.0
+   },
+   "expect": {
+    "headline": "10",
+    "band": "Raised (above 12)",
+    "detail": "15 mmol/L"
+   }
+  }
+ ]
+}

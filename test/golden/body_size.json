@@ -1,0 +1,97 @@
+{
+ "id": "body_size",
+ "source": "BMI = kg/m²; Asian bands WHO 2004 / WPRO 2000, WHO international bands; worked by hand",
+ "cases": [
+  {
+   "name": "70 kg 170 cm std 0",
+   "inputs": {
+    "weight": 70,
+    "height": 170,
+    "sex": 0,
+    "standard": 0
+   },
+   "expect": {
+    "headline": "24.2",
+    "band": "Overweight / at risk (Asian cut-offs)"
+   }
+  },
+  {
+   "name": "70 kg 170 cm std 1",
+   "inputs": {
+    "weight": 70,
+    "height": 170,
+    "sex": 0,
+    "standard": 1
+   },
+   "expect": {
+    "headline": "24.2",
+    "band": "Normal"
+   }
+  },
+  {
+   "name": "60 kg 165 cm std 0",
+   "inputs": {
+    "weight": 60,
+    "height": 165,
+    "sex": 1,
+    "standard": 0
+   },
+   "expect": {
+    "headline": "22",
+    "band": "Normal (Asian cut-offs)"
+   }
+  },
+  {
+   "name": "90 kg 165 cm std 0",
+   "inputs": {
+    "weight": 90,
+    "height": 165,
+    "sex": 1,
+    "standard": 0
+   },
+   "expect": {
+    "headline": "33.1",
+    "band": "Obese class II (Asian cut-offs)"
+   }
+  },
+  {
+   "name": "45 kg 170 cm std 1",
+   "inputs": {
+    "weight": 45,
+    "height": 170,
+    "sex": 0,
+    "standard": 1
+   },
+   "expect": {
+    "headline": "15.6",
+    "band": "Underweight"
+   }
+  },
+  {
+   "name": "110 kg 175 cm std 1",
+   "inputs": {
+    "weight": 110,
+    "height": 175,
+    "sex": 0,
+    "standard": 1
+   },
+   "expect": {
+    "headline": "35.9",
+    "band": "Obese class II"
+   }
+  },
+  {
+   "name": "95 kg 175 cm std 1",
+   "inputs": {
+    "weight": 95,
+    "height": 175,
+    "sex": 0,
+    "standard": 1
+   },
+   "expect": {
+    "headline": "31",
+    "band": "Obese class I"
+   }
+  }
+ ]
+}

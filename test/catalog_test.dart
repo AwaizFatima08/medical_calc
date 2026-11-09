@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:medicalcalc/calc/catalog.dart';
+import 'package:medicalcalc/calc/registry.dart';
 
 void main() {
   test('release 1 has 28 doctor and 10 public tools', () {
@@ -12,8 +13,10 @@ void main() {
     expect(ids, hasLength(kTools.length));
   });
 
-  test('no tool is switched on before verification', () {
-    expect(kTools.where((t) => t.available), isEmpty);
+  test('every calculator has a catalog entry', () {
+    for (final id in kCalculators.keys) {
+      expect(toolById(id), isNotNull, reason: id);
+    }
   });
 
   test('search matches name, alias and category', () {

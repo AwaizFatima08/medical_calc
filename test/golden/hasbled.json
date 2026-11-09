@@ -1,0 +1,78 @@
+{
+ "id": "hasbled",
+ "source": "HAS-BLED point table (Pisters 2010), by hand",
+ "cases": [
+  {
+   "name": "none",
+   "inputs": {
+    "h": false,
+    "renal": false,
+    "liver": false,
+    "stroke": false,
+    "bleed": false,
+    "inr": false,
+    "elderly": false,
+    "drugs": false,
+    "alcohol": false
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low to moderate bleeding risk"
+   }
+  },
+  {
+   "name": "elderly + drugs",
+   "inputs": {
+    "h": false,
+    "renal": false,
+    "liver": false,
+    "stroke": false,
+    "bleed": false,
+    "inr": false,
+    "elderly": true,
+    "drugs": true,
+    "alcohol": false
+   },
+   "expect": {
+    "headline": "2",
+    "band": "Low to moderate bleeding risk"
+   }
+  },
+  {
+   "name": "elderly + drugs + inr",
+   "inputs": {
+    "h": false,
+    "renal": false,
+    "liver": false,
+    "stroke": false,
+    "bleed": false,
+    "inr": true,
+    "elderly": true,
+    "drugs": true,
+    "alcohol": false
+   },
+   "expect": {
+    "headline": "3",
+    "band": "High bleeding risk"
+   }
+  },
+  {
+   "name": "all 9",
+   "inputs": {
+    "h": true,
+    "renal": true,
+    "liver": true,
+    "stroke": true,
+    "bleed": true,
+    "inr": true,
+    "elderly": true,
+    "drugs": true,
+    "alcohol": true
+   },
+   "expect": {
+    "headline": "9",
+    "band": "High bleeding risk"
+   }
+  }
+ ]
+}

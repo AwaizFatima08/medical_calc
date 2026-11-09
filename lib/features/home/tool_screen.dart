@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../calc/catalog.dart';
+import '../../calc/registry.dart';
 import '../../shared/readable_width.dart';
+import '../calculator/calculator_screen.dart';
+import '../calculator/lab_converter_screen.dart';
 
 /// Calculator screen. Release 1 tools arrive batch by batch after source
 /// check, golden vectors and clinician sign-off (design §9, §11). No ads here.
@@ -12,6 +15,11 @@ class ToolScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tool = toolById(toolId);
+    if (tool != null) {
+      final def = kCalculators[tool.id];
+      if (def != null) return CalculatorScreen(tool: tool, def: def);
+      if (tool.id == 'lab_units') return const LabConverterScreen();
+    }
     final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(title: Text(tool?.name ?? 'Tool')),
