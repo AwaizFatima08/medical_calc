@@ -5,6 +5,7 @@ import 'model.dart';
 import 'tools/acute.dart';
 import 'tools/body.dart';
 import 'tools/clots.dart';
+import 'tools/dengue_ramadan.dart';
 import 'tools/heart.dart';
 import 'tools/kidney.dart';
 import 'tools/lab.dart';
@@ -38,12 +39,16 @@ final Map<String, CalcDefinition> kCalculators = {
     apriFib4Calc,
     a1cEagCalc,
     dripRateCalc,
+    dengueCalc,
+    ramadanRiskCalc,
     publicBmiCalc,
     publicDiabetesRiskCalc,
     publicBpCalc,
     publicSugarCalc,
     publicDueDateCalc,
     publicHeatCalc,
+    publicDengueCalc,
+    publicRamadanCalc,
   ])
     c.id: c,
 };

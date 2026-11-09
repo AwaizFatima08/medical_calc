@@ -68,7 +68,7 @@ final publicBmiCalc = CalcDefinition(
     ),
     NumberInput(
       'waist',
-      'Waist, at the belly button (optional)',
+      'Waist, at the belly button',
       quantity: Q.length,
       min: 40,
       max: 200,
@@ -654,5 +654,163 @@ final publicHeatCalc = CalcDefinition(
       url:
           'https://www.who.int/news-room/fact-sheets/detail/climate-change-heat-and-health',
     ),
+  ],
+);
+
+// ---- P7 Dengue danger signs ----
+
+const _dengueDanger = <InputSpec>[
+  ToggleInput('d_belly', 'Severe or constant belly pain', points: 0),
+  ToggleInput('d_vomit', 'Vomiting again and again', points: 0),
+  ToggleInput(
+    'd_bleed',
+    'Bleeding from gums or nose, or blood in vomit or stool',
+    points: 0,
+  ),
+  ToggleInput('d_tired', 'Very sleepy, restless or confused', points: 0),
+  ToggleInput('d_cold', 'Cold, clammy hands and feet, or fainting', points: 0),
+  ToggleInput('d_breath', 'Difficulty breathing', points: 0),
+  ToggleInput('d_urine', 'Little or no urine for 6 hours', points: 0),
+];
+
+final publicDengueCalc = CalcDefinition(
+  id: 'p_dengue',
+  version: 'WHO 2009 dengue warning signs; NIH Pakistan dengue advisory 2025',
+  inputs: const [
+    ToggleInput('fever', 'Fever now, or in the last few days', points: 0),
+    ..._dengueDanger,
+  ],
+  compute: (v) {
+    final danger = _dengueDanger.where((i) => v.flag(i.id)).toList();
+    if (danger.isNotEmpty) {
+      return CalcResult(
+        headline: 'Danger signs',
+        band: '${danger.length} danger sign${danger.length == 1 ? '' : 's'}',
+        severity: Severity.danger,
+        interpretation:
+            'These can be signs of severe dengue. Go to hospital now.',
+        emergency:
+            'Dengue danger signs: go to the nearest hospital now, or call 1122.',
+        details: [for (final d in danger) d.label],
+      );
+    }
+    return CalcResult(
+      headline: 'No danger signs now',
+      band: v.flag('fever') ? 'Keep watching' : 'No fever',
+      severity: Severity.caution,
+      interpretation:
+          'Rest and drink plenty of fluids (ORS, water, juice, soup). For fever use paracetamol only: do not take ibuprofen, aspirin or other painkillers like them. See a doctor for a blood test.',
+      details: const [
+        'The most dangerous time is when the fever goes down, around day 3 to 7. Check for danger signs every day.',
+        'Prevent mosquito bites: nets, repellent, and no standing water near the house.',
+      ],
+    );
+  },
+  formula:
+      'Any danger sign → go to hospital now. Based on the WHO 2009 warning signs, in plain words.',
+  sources: const [
+    Source(
+      'WHO/TDR. Dengue: guidelines for diagnosis, treatment, prevention and control, 2009 (warning signs).',
+      url: 'https://iris.who.int/handle/10665/44188',
+    ),
+    Source(
+      'NIH/NHSRC Pakistan. Advisory for prevention and control of dengue fever, March 2025.',
+      url: 'https://www.nih.org.pk/guidelines',
+    ),
+  ],
+);
+
+// ---- P8 Ramadan check for people with diabetes ----
+
+const _ramadanHigh = <InputSpec>[
+  ToggleInput('r_preg', 'Pregnant', points: 0),
+  ToggleInput(
+    'r_hypo',
+    'Had a severe low sugar, or cannot feel low sugars coming',
+    points: 0,
+  ),
+  ToggleInput(
+    'r_dka',
+    'In hospital for very high sugar (DKA) in the last 3 months',
+    points: 0,
+  ),
+  ToggleInput('r_kidney', 'Serious kidney disease or on dialysis', points: 0),
+  ToggleInput(
+    'r_heart',
+    'Heart disease or stroke that is not stable',
+    points: 0,
+  ),
+  ToggleInput('r_frail', 'Very frail or memory problems', points: 0),
+];
+
+const _ramadanMore = <InputSpec>[
+  ToggleInput('r_insulin', 'Uses insulin', points: 0),
+  ToggleInput('r_type1', 'Has type 1 diabetes', points: 0),
+  ToggleInput('r_lows', 'Gets low sugars sometimes', points: 0),
+  ToggleInput('r_work', 'Does hard physical work', points: 0),
+  ToggleInput(
+    'r_tablets',
+    'Takes glibenclamide or other sugar tablets that can cause lows',
+    points: 0,
+  ),
+];
+
+final publicRamadanCalc = CalcDefinition(
+  id: 'p_ramadan',
+  version: 'Plain-language checklist based on IDF-DAR risk items (2021, 2026)',
+  inputs: const [..._ramadanHigh, ..._ramadanMore],
+  compute: (v) {
+    final high = _ramadanHigh.where((i) => v.flag(i.id)).toList();
+    final more = _ramadanMore.where((i) => v.flag(i.id)).toList();
+    if (high.isNotEmpty) {
+      return CalcResult(
+        headline: 'Fasting may be unsafe',
+        band: 'High-risk sign present',
+        severity: Severity.danger,
+        interpretation:
+            'Fasting is probably not safe for you. Islam allows people who are ill not to fast. Talk to your doctor before Ramadan.',
+        details: [for (final h in high) h.label],
+      );
+    }
+    if (more.isNotEmpty) {
+      return CalcResult(
+        headline: 'Talk to your doctor first',
+        band: 'Some risk',
+        severity: Severity.caution,
+        interpretation:
+            'You may be able to fast, but your medicines and timings may need changes. See your doctor 6–8 weeks before Ramadan.',
+        details: [
+          for (final m in more) m.label,
+          'Break the fast at once if sugar is below 70 mg/dL or above 300 mg/dL, or if you feel unwell.',
+        ],
+      );
+    }
+    return const CalcResult(
+      headline: 'Lower risk',
+      band: 'No risk signs ticked',
+      severity: Severity.normal,
+      interpretation:
+          'Fasting is often possible, but still see your doctor 6–8 weeks before Ramadan to plan medicines and sugar checks.',
+      details: [
+        'Break the fast at once if sugar is below 70 mg/dL or above 300 mg/dL, or if you feel unwell.',
+      ],
+    );
+  },
+  formula:
+      'Not a score. Any high-risk item → fasting may be unsafe; other risk items → talk to your doctor first.',
+  sources: const [
+    Source(
+      'IDF-DAR. Diabetes and Ramadan: Practical Guidelines 2021 (pre-Ramadan assessment 6–8 weeks before; when to break the fast).',
+      url:
+          'https://idf.org/news-and-resources/resources/diabetes-and-ramadan-practical-guidelines-2021/',
+    ),
+    Source(
+      'Afandi B et al. The 2026 update of the IDF-DAR risk calculator. J Diabetes Endocr Pract 2025.',
+      url:
+          'https://media.idf.org/media/uploads/2026/02/IDF-DAR-Risk-Calculator-Update-2026.pdf',
+    ),
+  ],
+  notes: const [
+    'For people with diabetes. This checklist does not replace a doctor\'s assessment.',
   ],
 );

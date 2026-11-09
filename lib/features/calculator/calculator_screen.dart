@@ -150,7 +150,9 @@ class _CalculatorScreenState extends ConsumerState<CalculatorScreen> {
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
                 ],
                 decoration: InputDecoration(
-                  labelText: input.optional
+                  labelText:
+                      input.optional &&
+                          !input.label.toLowerCase().contains('optional')
                       ? '${input.label} (optional)'
                       : input.label,
                   helperText: input.help,

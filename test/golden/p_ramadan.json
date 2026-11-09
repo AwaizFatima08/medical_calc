@@ -1,0 +1,63 @@
+{
+ "id": "p_ramadan",
+ "source": "Checklist logic, by hand",
+ "cases": [
+  {
+   "name": "nothing ticked",
+   "inputs": {
+    "r_preg": false,
+    "r_hypo": false,
+    "r_dka": false,
+    "r_kidney": false,
+    "r_heart": false,
+    "r_frail": false,
+    "r_insulin": false,
+    "r_type1": false,
+    "r_lows": false,
+    "r_work": false,
+    "r_tablets": false
+   },
+   "expect": {
+    "headline": "Lower risk"
+   }
+  },
+  {
+   "name": "insulin",
+   "inputs": {
+    "r_preg": false,
+    "r_hypo": false,
+    "r_dka": false,
+    "r_kidney": false,
+    "r_heart": false,
+    "r_frail": false,
+    "r_insulin": true,
+    "r_type1": false,
+    "r_lows": false,
+    "r_work": false,
+    "r_tablets": false
+   },
+   "expect": {
+    "headline": "Talk to your doctor first"
+   }
+  },
+  {
+   "name": "dialysis",
+   "inputs": {
+    "r_preg": false,
+    "r_hypo": false,
+    "r_dka": false,
+    "r_kidney": true,
+    "r_heart": false,
+    "r_frail": false,
+    "r_insulin": true,
+    "r_type1": false,
+    "r_lows": false,
+    "r_work": false,
+    "r_tablets": false
+   },
+   "expect": {
+    "headline": "Fasting may be unsafe"
+   }
+  }
+ ]
+}

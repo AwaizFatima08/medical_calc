@@ -385,4 +385,51 @@ for c, rh in [(25, 40), (32, 50), (35, 60), (40, 30), (45, 10), (29, 90), (38, 7
                   'expect': {'headline': r((h-32)*5/9), 'band': hband(h), 'emergency': False}})
 cases.append({'name': 'heat-stroke signs → emergency', 'inputs': {'temp': 40, 'rh': 30, 's_confused': True, 's_hot': False}, 'expect': {'emergency': True}})
 write('p_heat', 'NWS heat index algorithm (wpc.ncep.noaa.gov), reference implementation; NWS table: 96 °F 65% ≈ 121 °F', cases)
+
+# ================= Dengue and Ramadan =================
+ws = ['w_abdo','w_vomit','w_fluid','w_mucosal','w_lethargy','w_liver','w_hct']
+sv = ['s_shock','s_hypo','s_resp','s_bleed','s_organ']
+def dg(kg, group=0, sex=0, height=None, *on):
+    i = {'weight': kg, 'group': group, 'sex': sex}
+    if height is not None: i['height'] = height
+    for k in ws + sv: i[k] = k in on
+    return i
+ibw_m170 = 50 + 0.91*(170-152.4)   # 66.016
+write('dengue', 'WHO 2009 / WHO 2012 handbook regimens (verified 9 Nov 2026), by hand', [
+  {'name': 'no signs → Group A', 'inputs': dg(60), 'expect': {'headline': 'Dengue without warning signs'}},
+  {'name': 'warning sign, 60 kg → 300–420 mL/h', 'inputs': dg(60, 0, 0, None, 'w_vomit'), 'expect': {'headline': 'Dengue with warning signs', 'band': '1 warning sign (WHO Group B)'}},
+  {'name': 'warning first step text', 'inputs': dg(60, 0, 0, None, 'w_vomit', 'w_abdo'), 'expect': {'band': '2 warning signs (WHO Group B)', 'detail': '3–5 mL/kg/h = 180–300 mL/h'}},
+  {'name': 'obese adult uses IBW 66.0 kg', 'inputs': dg(100, 0, 0, 170, 'w_vomit'), 'expect': {'detail': 'Using ideal body weight 66 kg'}},
+  {'name': 'compensated shock adult 60 kg', 'inputs': dg(60, 0, 0, None, 's_shock'), 'expect': {'band': 'Compensated shock', 'detail': 'second bolus 10–20 mL/kg/h for 1 h (10–20 mL/kg/h = 600–1200 mL/h)'}},
+  {'name': 'hypotensive shock child 20 kg', 'inputs': dg(20, 1, 0, None, 's_hypo'), 'expect': {'band': 'Hypotensive shock', 'detail': 'colloid 10 mL/kg/h for 1 h (200 mL/h)'}},
+  {'name': 'severe bleeding without shock', 'inputs': dg(60, 0, 0, None, 's_bleed'), 'expect': {'band': 'Severe dengue without shock'}},
+])
+base = {'pregnancy': False, 'type': 0, 'duration': 0, 'hypo': 0, 'hba1c': 0, 'smbg': 0, 'cgm': False, 'dka': 0,
+        'macro': 0, 'egfr': 0, 'micro': 0, 'frailty': 0, 'labour': 0, 'education': 0, 'hours': 0}
+for t in ['t_mdi_premix','t_od_premix','t_pump','t_aid','t_basal','t_ultralong','t_short','t_glib','t_glic','t_multi']: base[t] = False
+def rm(**kw): d = dict(base); d.update(kw); return d
+write('ramadan_risk', 'IDF-DAR 2026 Fig. 1 point values (verified 9 Nov 2026), by hand', [
+  {'name': 'all zero', 'inputs': rm(), 'expect': {'headline': '0', 'band': 'Low risk'}},
+  {'name': 'basal 1 + gliclazide 0.5 + HbA1c 8% 0.5 + 16 h 1 + no education 1 + 10-20 y 0.5 = 4.5', 'inputs': rm(t_basal=True, t_glic=True, hba1c=0.5, hours=1, education=1, duration=0.5),
+   'expect': {'headline': '4.5', 'band': 'Moderate risk'}},
+  {'name': 'exactly 3 = low', 'inputs': rm(t_mdi_premix=True, education=1), 'expect': {'headline': '3', 'band': 'Low risk'}},
+  {'name': '3.5 = moderate', 'inputs': rm(t_mdi_premix=True, education=1, duration=0.5), 'expect': {'headline': '3.5', 'band': 'Moderate risk'}},
+  {'name': 'CGM gives 3.25 → moderate (assumption)', 'inputs': rm(t_mdi_premix=True, education=1, t_short=True, cgm=True), 'expect': {'headline': '3.25', 'band': 'Moderate risk'}},
+  {'name': 'pregnancy alone 6.5 = high', 'inputs': rm(pregnancy=True), 'expect': {'headline': '6.5', 'band': 'High risk', 'detail': 'may choose not to fast'}},
+  {'name': 'exactly 6 = moderate', 'inputs': rm(labour=4, smbg=2), 'expect': {'headline': '6', 'band': 'Moderate risk'}},
+])
+dd = ['d_belly','d_vomit','d_bleed','d_tired','d_cold','d_breath','d_urine']
+def pdg(*on):
+    i = {k: k in on for k in dd}; i['fever'] = 'fever' in on; return i
+write('p_dengue', 'WHO 2009 warning signs in plain words, by hand', [
+  {'name': 'fever, no danger', 'inputs': pdg('fever'), 'expect': {'headline': 'No danger signs now', 'emergency': False}},
+  {'name': 'bleeding → emergency', 'inputs': pdg('fever','d_bleed'), 'expect': {'headline': 'Danger signs', 'emergency': True}},
+])
+hi_ = ['r_preg','r_hypo','r_dka','r_kidney','r_heart','r_frail']; mo = ['r_insulin','r_type1','r_lows','r_work','r_tablets']
+def pr(*on): return {k: k in on for k in hi_ + mo}
+write('p_ramadan', 'Checklist logic, by hand', [
+  {'name': 'nothing ticked', 'inputs': pr(), 'expect': {'headline': 'Lower risk'}},
+  {'name': 'insulin', 'inputs': pr('r_insulin'), 'expect': {'headline': 'Talk to your doctor first'}},
+  {'name': 'dialysis', 'inputs': pr('r_kidney','r_insulin'), 'expect': {'headline': 'Fasting may be unsafe'}},
+])
 print('golden files written')

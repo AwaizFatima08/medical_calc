@@ -1,0 +1,40 @@
+{
+ "id": "p_dengue",
+ "source": "WHO 2009 warning signs in plain words, by hand",
+ "cases": [
+  {
+   "name": "fever, no danger",
+   "inputs": {
+    "d_belly": false,
+    "d_vomit": false,
+    "d_bleed": false,
+    "d_tired": false,
+    "d_cold": false,
+    "d_breath": false,
+    "d_urine": false,
+    "fever": true
+   },
+   "expect": {
+    "headline": "No danger signs now",
+    "emergency": false
+   }
+  },
+  {
+   "name": "bleeding → emergency",
+   "inputs": {
+    "d_belly": false,
+    "d_vomit": false,
+    "d_bleed": true,
+    "d_tired": false,
+    "d_cold": false,
+    "d_breath": false,
+    "d_urine": false,
+    "fever": true
+   },
+   "expect": {
+    "headline": "Danger signs",
+    "emergency": true
+   }
+  }
+ ]
+}

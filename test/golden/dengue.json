@@ -1,0 +1,172 @@
+{
+ "id": "dengue",
+ "source": "WHO 2009 / WHO 2012 handbook regimens (verified 9 Nov 2026), by hand",
+ "cases": [
+  {
+   "name": "no signs → Group A",
+   "inputs": {
+    "weight": 60,
+    "group": 0,
+    "sex": 0,
+    "w_abdo": false,
+    "w_vomit": false,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": false,
+    "s_hypo": false,
+    "s_resp": false,
+    "s_bleed": false,
+    "s_organ": false
+   },
+   "expect": {
+    "headline": "Dengue without warning signs"
+   }
+  },
+  {
+   "name": "warning sign, 60 kg → 300–420 mL/h",
+   "inputs": {
+    "weight": 60,
+    "group": 0,
+    "sex": 0,
+    "w_abdo": false,
+    "w_vomit": true,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": false,
+    "s_hypo": false,
+    "s_resp": false,
+    "s_bleed": false,
+    "s_organ": false
+   },
+   "expect": {
+    "headline": "Dengue with warning signs",
+    "band": "1 warning sign (WHO Group B)"
+   }
+  },
+  {
+   "name": "warning first step text",
+   "inputs": {
+    "weight": 60,
+    "group": 0,
+    "sex": 0,
+    "w_abdo": true,
+    "w_vomit": true,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": false,
+    "s_hypo": false,
+    "s_resp": false,
+    "s_bleed": false,
+    "s_organ": false
+   },
+   "expect": {
+    "band": "2 warning signs (WHO Group B)",
+    "detail": "3–5 mL/kg/h = 180–300 mL/h"
+   }
+  },
+  {
+   "name": "obese adult uses IBW 66.0 kg",
+   "inputs": {
+    "weight": 100,
+    "group": 0,
+    "sex": 0,
+    "height": 170,
+    "w_abdo": false,
+    "w_vomit": true,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": false,
+    "s_hypo": false,
+    "s_resp": false,
+    "s_bleed": false,
+    "s_organ": false
+   },
+   "expect": {
+    "detail": "Using ideal body weight 66 kg"
+   }
+  },
+  {
+   "name": "compensated shock adult 60 kg",
+   "inputs": {
+    "weight": 60,
+    "group": 0,
+    "sex": 0,
+    "w_abdo": false,
+    "w_vomit": false,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": true,
+    "s_hypo": false,
+    "s_resp": false,
+    "s_bleed": false,
+    "s_organ": false
+   },
+   "expect": {
+    "band": "Compensated shock",
+    "detail": "second bolus 10–20 mL/kg/h for 1 h (10–20 mL/kg/h = 600–1200 mL/h)"
+   }
+  },
+  {
+   "name": "hypotensive shock child 20 kg",
+   "inputs": {
+    "weight": 20,
+    "group": 1,
+    "sex": 0,
+    "w_abdo": false,
+    "w_vomit": false,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": false,
+    "s_hypo": true,
+    "s_resp": false,
+    "s_bleed": false,
+    "s_organ": false
+   },
+   "expect": {
+    "band": "Hypotensive shock",
+    "detail": "colloid 10 mL/kg/h for 1 h (200 mL/h)"
+   }
+  },
+  {
+   "name": "severe bleeding without shock",
+   "inputs": {
+    "weight": 60,
+    "group": 0,
+    "sex": 0,
+    "w_abdo": false,
+    "w_vomit": false,
+    "w_fluid": false,
+    "w_mucosal": false,
+    "w_lethargy": false,
+    "w_liver": false,
+    "w_hct": false,
+    "s_shock": false,
+    "s_hypo": false,
+    "s_resp": false,
+    "s_bleed": true,
+    "s_organ": false
+   },
+   "expect": {
+    "band": "Severe dengue without shock"
+   }
+  }
+ ]
+}
