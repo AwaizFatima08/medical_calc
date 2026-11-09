@@ -7,10 +7,19 @@ import 'units.dart';
 enum Severity { normal, info, caution, warning, danger }
 
 sealed class InputSpec {
-  const InputSpec(this.id, this.label, {this.help, this.showWhen});
+  const InputSpec(
+    this.id,
+    this.label, {
+    this.help,
+    this.showWhen,
+    this.heading,
+  });
   final String id;
   final String label;
   final String? help;
+
+  /// Section title shown above this input (e.g. "Any of these now?").
+  final String? heading;
 
   /// Show only when choice [showWhen.id] has value [showWhen.value].
   final ({String id, num value})? showWhen;
@@ -31,6 +40,7 @@ class NumberInput extends InputSpec {
     this.optional = false,
     super.help,
     super.showWhen,
+    super.heading,
   });
 
   final Quantity quantity;
@@ -48,6 +58,7 @@ class ToggleInput extends InputSpec {
     this.points = 1,
     super.help,
     super.showWhen,
+    super.heading,
   });
   final num points;
 }
@@ -68,6 +79,7 @@ class ChoiceInput extends InputSpec {
     this.followsBmiSetting = false,
     super.help,
     super.showWhen,
+    super.heading,
   });
 
   final List<Choice> choices;
@@ -80,7 +92,13 @@ class ChoiceInput extends InputSpec {
 }
 
 class DateInput extends InputSpec {
-  const DateInput(super.id, super.label, {super.help, super.showWhen});
+  const DateInput(
+    super.id,
+    super.label, {
+    super.help,
+    super.showWhen,
+    super.heading,
+  });
 }
 
 /// Values entered so far. Numbers are in base units; choices are their value;

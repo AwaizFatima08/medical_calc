@@ -120,6 +120,14 @@ class _CalculatorScreenState extends ConsumerState<CalculatorScreen> {
               ),
             for (final input in def.inputs)
               if (input.visible(Inputs(_values))) ...[
+                if (input.heading != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4, bottom: 8),
+                    child: Text(
+                      input.heading!,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
                 _buildInput(context, input),
                 const SizedBox(height: 12),
               ],
@@ -183,12 +191,14 @@ class _CalculatorScreenState extends ConsumerState<CalculatorScreen> {
             value: on,
             title: Text(input.label),
             subtitle: input.help == null ? null : Text(input.help!),
-            secondary: Text(
-              points >= 0
-                  ? '+${fmt(points.toDouble())}'
-                  : fmt(points.toDouble()),
-              style: text.labelLarge,
-            ),
+            secondary: points == 0
+                ? null
+                : Text(
+                    points > 0
+                        ? '+${fmt(points.toDouble())}'
+                        : fmt(points.toDouble()),
+                    style: text.labelLarge,
+                  ),
             onChanged: (v) => setState(() => _values[input.id] = v ?? false),
           ),
         );

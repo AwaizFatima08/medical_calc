@@ -6,27 +6,48 @@ import 'mother_child.dart' show hollidaySegarDaily;
 // ---- D24 Dengue: WHO 2009 classification and WHO 2009/2012 fluids ----
 
 const _warningSigns = <InputSpec>[
-  ToggleInput('w_abdo', 'Abdominal pain or tenderness'),
-  ToggleInput('w_vomit', 'Persistent vomiting'),
   ToggleInput(
+    points: 0,
+    'w_abdo',
+    heading: 'Warning signs (WHO 2009)',
+    'Abdominal pain or tenderness',
+  ),
+  ToggleInput(points: 0, 'w_vomit', 'Persistent vomiting'),
+  ToggleInput(
+    points: 0,
     'w_fluid',
     'Clinical fluid accumulation (ascites, pleural effusion)',
   ),
-  ToggleInput('w_mucosal', 'Mucosal bleeding'),
-  ToggleInput('w_lethargy', 'Lethargy or restlessness'),
-  ToggleInput('w_liver', 'Liver enlargement more than 2 cm'),
-  ToggleInput('w_hct', 'Rising haematocrit with a rapid fall in platelets'),
+  ToggleInput(points: 0, 'w_mucosal', 'Mucosal bleeding'),
+  ToggleInput(points: 0, 'w_lethargy', 'Lethargy or restlessness'),
+  ToggleInput(points: 0, 'w_liver', 'Liver enlargement more than 2 cm'),
+  ToggleInput(
+    points: 0,
+    'w_hct',
+    'Rising haematocrit with a rapid fall in platelets',
+  ),
 ];
 
 const _severe = <InputSpec>[
   ToggleInput(
+    points: 0,
     's_shock',
+    heading: 'Severe dengue',
     'Shock from plasma leakage (compensated: tachycardia, cold peripheries, CRT >2 s, narrow pulse pressure)',
   ),
-  ToggleInput('s_hypo', 'Hypotensive shock (low or unrecordable BP)'),
-  ToggleInput('s_resp', 'Fluid accumulation with respiratory distress'),
-  ToggleInput('s_bleed', 'Severe bleeding'),
   ToggleInput(
+    points: 0,
+    's_hypo',
+    'Hypotensive shock (low or unrecordable BP)',
+  ),
+  ToggleInput(
+    points: 0,
+    's_resp',
+    'Fluid accumulation with respiratory distress',
+  ),
+  ToggleInput(points: 0, 's_bleed', 'Severe bleeding'),
+  ToggleInput(
+    points: 0,
     's_organ',
     'Severe organ involvement (AST or ALT ≥1000, impaired consciousness, heart or other organs)',
   ),
@@ -227,6 +248,7 @@ const _ramadanItems = <InputSpec>[
   ),
   ToggleInput(
     't_mdi_premix',
+    heading: 'Treatment (tick all that apply)',
     'Treatment: premixed insulin more than once daily',
     points: 2,
   ),

@@ -232,7 +232,12 @@ final publicDiabetesRiskCalc = CalcDefinition(
 // ---- P3 Blood pressure reading ----
 
 const _bpSymptoms = <InputSpec>[
-  ToggleInput('s_chest', 'Chest pain', points: 0),
+  ToggleInput(
+    's_chest',
+    'Chest pain',
+    points: 0,
+    heading: 'Do you have any of these now?',
+  ),
   ToggleInput('s_breath', 'Short of breath', points: 0),
   ToggleInput(
     's_weak',
@@ -353,7 +358,12 @@ final publicBpCalc = CalcDefinition(
 // ---- P4 Blood sugar reading ----
 
 const _sugarSymptoms = <InputSpec>[
-  ToggleInput('s_drowsy', 'Very drowsy, confused or hard to wake', points: 0),
+  ToggleInput(
+    's_drowsy',
+    'Very drowsy, confused or hard to wake',
+    points: 0,
+    heading: 'Any of these now?',
+  ),
   ToggleInput('s_vomit', 'Vomiting or deep fast breathing', points: 0),
 ];
 
@@ -566,6 +576,7 @@ double heatIndexF(double t, double rh) {
 const _heatSymptoms = <InputSpec>[
   ToggleInput(
     's_confused',
+    heading: 'Is anyone showing these signs?',
     'Someone is confused, fainting or having a fit',
     points: 0,
   ),
@@ -661,7 +672,12 @@ final publicHeatCalc = CalcDefinition(
 // ---- P7 Dengue danger signs ----
 
 const _dengueDanger = <InputSpec>[
-  ToggleInput('d_belly', 'Severe or constant belly pain', points: 0),
+  ToggleInput(
+    'd_belly',
+    'Severe or constant belly pain',
+    points: 0,
+    heading: 'Any of these danger signs?',
+  ),
   ToggleInput('d_vomit', 'Vomiting again and again', points: 0),
   ToggleInput(
     'd_bleed',
@@ -724,7 +740,12 @@ final publicDengueCalc = CalcDefinition(
 // ---- P8 Ramadan check for people with diabetes ----
 
 const _ramadanHigh = <InputSpec>[
-  ToggleInput('r_preg', 'Pregnant', points: 0),
+  ToggleInput(
+    'r_preg',
+    'Pregnant',
+    points: 0,
+    heading: 'Tick any that apply to you',
+  ),
   ToggleInput(
     'r_hypo',
     'Had a severe low sugar, or cannot feel low sugars coming',

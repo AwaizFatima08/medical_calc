@@ -241,7 +241,13 @@ const _byPercent = (id: 'method', value: 0);
 const _byRegions = (id: 'method', value: 1);
 
 const _ruleOfNines = <InputSpec>[
-  ToggleInput('head', 'Head and neck', points: 9, showWhen: _byRegions),
+  ToggleInput(
+    'head',
+    heading: 'Burnt regions (partial or full thickness)',
+    'Head and neck',
+    points: 9,
+    showWhen: _byRegions,
+  ),
   ToggleInput('r_arm', 'Right arm', points: 9, showWhen: _byRegions),
   ToggleInput('l_arm', 'Left arm', points: 9, showWhen: _byRegions),
   ToggleInput('front', 'Front of trunk', points: 18, showWhen: _byRegions),
