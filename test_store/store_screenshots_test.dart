@@ -33,8 +33,8 @@ Future<void> _pumpApp(
   // ignore: invalid_use_of_visible_for_testing_member (test_store/ is a test, outside test/)
   SharedPreferences.setMockInitialValues(prefs);
   final sp = await SharedPreferences.getInstance();
-  // 1080×2340 phone.
-  tester.view.physicalSize = const Size(1080, 2340);
+  // 1080×1920 phone (Play needs 9:16).
+  tester.view.physicalSize = const Size(1080, 1920);
   tester.view.devicePixelRatio = 2.625;
   addTearDown(tester.view.reset);
   await tester.pumpWidget(
