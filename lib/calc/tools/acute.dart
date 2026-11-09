@@ -6,6 +6,7 @@ import '../units.dart';
 
 final curb65Calc = CalcDefinition(
   id: 'curb65',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'CURB-65 / CRB-65 (Lim 2003; BTS 2009, NICE NG250 2025)',
   inputs: const [
     ToggleInput(
@@ -154,6 +155,7 @@ const _qsofaItems = <InputSpec>[
 
 final qsofaCalc = CalcDefinition(
   id: 'qsofa',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'qSOFA (Sepsis-3, Seymour 2016)',
   inputs: _qsofaItems,
   compute: (v) => scoreResult(_qsofaItems, v, const [
@@ -227,6 +229,7 @@ const _gcsItems = <InputSpec>[
 
 final gcsCalc = CalcDefinition(
   id: 'gcs',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version:
       'Glasgow Coma Scale (Teasdale & Jennett 1974; 2014 structured approach)',
   inputs: _gcsItems,
@@ -329,6 +332,7 @@ int _tempPts(double t) => t <= 35.0
 
 final news2Calc = CalcDefinition(
   id: 'news2',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'NEWS2 (Royal College of Physicians 2017)',
   inputs: const [
     NumberInput(

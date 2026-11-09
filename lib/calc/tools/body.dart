@@ -44,6 +44,7 @@ double bsaMosteller(double kg, double cm) => math.sqrt(kg * cm / 3600);
 
 final bodySizeCalc = CalcDefinition(
   id: 'body_size',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version:
       'BMI (WHO; Asian cut-offs WHO 2004), BSA Mosteller 1987, IBW Devine 1974',
   inputs: const [

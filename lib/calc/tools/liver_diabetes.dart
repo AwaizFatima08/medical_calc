@@ -7,6 +7,7 @@ import '../units.dart';
 
 final apriFib4Calc = CalcDefinition(
   id: 'apri_fib4',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version:
       'FIB-4 (Sterling 2006; MASLD cut-offs AASLD 2023); APRI (Wai 2003; WHO 2014/2024)',
   inputs: const [
@@ -113,6 +114,7 @@ final apriFib4Calc = CalcDefinition(
 
 final a1cEagCalc = CalcDefinition(
   id: 'a1c_eag',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'ADAG (Nathan 2008); ADA Standards of Care 2026 for diagnosis bands',
   inputs: const [
     NumberInput('a1c', 'HbA1c', quantity: Q.hba1c, min: 3, max: 20),
@@ -157,6 +159,7 @@ final a1cEagCalc = CalcDefinition(
 
 final dripRateCalc = CalcDefinition(
   id: 'drip_rate',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Standard infusion arithmetic',
   inputs: const [
     NumberInput(

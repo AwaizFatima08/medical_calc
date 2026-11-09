@@ -69,6 +69,7 @@ double ckdEpi2021(double scr, double age, {required bool female}) {
 
 final egfrCalc = CalcDefinition(
   id: 'egfr',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'CKD-EPI 2021 creatinine (race-free)',
   inputs: const [
     NumberInput(
@@ -116,6 +117,7 @@ final egfrCalc = CalcDefinition(
 
 final cockcroftGaultCalc = CalcDefinition(
   id: 'cockcroft_gault',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Cockcroft-Gault 1976',
   inputs: const [
     NumberInput('age', 'Age', quantity: Q.age, min: 18, max: 110, decimals: 0),

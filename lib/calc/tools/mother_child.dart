@@ -12,6 +12,7 @@ String _ga(int days) => '${days ~/ 7}w ${days % 7}d';
 
 final gestationalAgeCalc = CalcDefinition(
   id: 'gestational_age',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Naegele rule (LMP + 280 days); ACOG CO 700 (2017) for dating',
   inputs: const [
     ChoiceInput(
@@ -153,6 +154,7 @@ const _bishopItems = <InputSpec>[
 
 final bishopCalc = CalcDefinition(
   id: 'bishop',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Bishop 1964',
   inputs: _bishopItems,
   compute: (v) {
@@ -201,6 +203,7 @@ double hollidaySegarDaily(double kg) {
 
 final hollidaySegarCalc = CalcDefinition(
   id: 'holliday_segar',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Holliday & Segar 1957 (4-2-1 rule)',
   inputs: const [
     NumberInput('weight', 'Weight', quantity: Q.weight, min: 1, max: 150),
@@ -259,6 +262,7 @@ const _ruleOfNines = <InputSpec>[
 
 final parklandCalc = CalcDefinition(
   id: 'parkland',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Parkland formula (Baxter 1968); adult Rule of Nines',
   inputs: const [
     NumberInput('weight', 'Weight', quantity: Q.weight, min: 3, max: 250),
@@ -325,6 +329,7 @@ final parklandCalc = CalcDefinition(
 
 final dehydrationCalc = CalcDefinition(
   id: 'dehydration',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'WHO 2005 diarrhoea treatment / IMCI 2014',
   inputs: const [
     NumberInput('weight', 'Weight', quantity: Q.weight, min: 1, max: 80),
@@ -461,6 +466,7 @@ String _z(double z) => '${z >= 0 ? '+' : '−'}${fmt(z.abs(), 2)}';
 
 final whoGrowthCalc = CalcDefinition(
   id: 'who_growth',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version:
       'WHO Child Growth Standards 2006 (0–5 years); WHO 2013 SAM guideline (MUAC)',
   inputs: const [

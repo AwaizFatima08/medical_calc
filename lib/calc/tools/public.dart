@@ -57,6 +57,7 @@ double? _heightCm(Inputs v) {
 
 final publicBmiCalc = CalcDefinition(
   id: 'p_bmi',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'WHO 2004 Asian BMI cut-offs; IDF 2006 South Asian waist cut-offs',
   inputs: const [
     NumberInput('weight', 'Weight', quantity: Q.weight, min: 25, max: 250),
@@ -139,6 +140,7 @@ final publicBmiCalc = CalcDefinition(
 
 final publicDiabetesRiskCalc = CalcDefinition(
   id: 'p_diabetes_risk',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Indian Diabetes Risk Score (Mohan 2005)',
   inputs: const [
     ChoiceInput(
@@ -250,6 +252,7 @@ const _bpSymptoms = <InputSpec>[
 
 final publicBpCalc = CalcDefinition(
   id: 'p_bp',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'AHA/ACC 2025 high blood pressure guideline categories',
   inputs: const [
     NumberInput(
@@ -369,6 +372,7 @@ const _sugarSymptoms = <InputSpec>[
 
 final publicSugarCalc = CalcDefinition(
   id: 'p_sugar',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'ADA Standards of Care 2026 (diagnosis and hypoglycaemia levels)',
   inputs: const [
     NumberInput(
@@ -506,6 +510,7 @@ final publicSugarCalc = CalcDefinition(
 
 final publicDueDateCalc = CalcDefinition(
   id: 'p_due_date',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Naegele rule (LMP + 280 days)',
   inputs: const [DateInput('lmp', 'First day of your last period')],
   compute: (v) {
@@ -589,6 +594,7 @@ const _heatSymptoms = <InputSpec>[
 
 final publicHeatCalc = CalcDefinition(
   id: 'p_heat',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'US National Weather Service heat index (Rothfusz 1990)',
   inputs: const [
     NumberInput(
@@ -692,6 +698,7 @@ const _dengueDanger = <InputSpec>[
 
 final publicDengueCalc = CalcDefinition(
   id: 'p_dengue',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'WHO 2009 dengue warning signs; NIH Pakistan dengue advisory 2025',
   inputs: const [
     ToggleInput('fever', 'Fever now, or in the last few days', points: 0),
@@ -779,6 +786,7 @@ const _ramadanMore = <InputSpec>[
 
 final publicRamadanCalc = CalcDefinition(
   id: 'p_ramadan',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Plain-language checklist based on IDF-DAR risk items (2021, 2026)',
   inputs: const [..._ramadanHigh, ..._ramadanMore],
   compute: (v) {
@@ -841,6 +849,7 @@ final publicRamadanCalc = CalcDefinition(
 
 final publicHeartRiskCalc = CalcDefinition(
   id: 'p_heart_risk',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'WHO 2019 CVD risk chart, non-laboratory, South Asia (Kaptoge 2019)',
   inputs: const [
     NumberInput(

@@ -3,6 +3,7 @@ import '../units.dart';
 
 final anionGapCalc = CalcDefinition(
   id: 'anion_gap',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Anion gap; albumin correction (Figge 1998)',
   inputs: const [
     NumberInput(
@@ -84,6 +85,7 @@ final anionGapCalc = CalcDefinition(
 
 final correctedCalciumCalc = CalcDefinition(
   id: 'corrected_calcium',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Payne 1973 (0.8 mg/dL per g/dL albumin below 4)',
   inputs: const [
     NumberInput(
@@ -125,6 +127,7 @@ final correctedCalciumCalc = CalcDefinition(
 
 final correctedSodiumCalc = CalcDefinition(
   id: 'corrected_sodium',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Katz 1973 (1.6) and Hillier 1999 (2.4)',
   inputs: const [
     NumberInput(
@@ -185,6 +188,7 @@ final correctedSodiumCalc = CalcDefinition(
 
 final osmolalityCalc = CalcDefinition(
   id: 'osmolality',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Calculated osmolality 2Na + glucose/18 + BUN/2.8',
   inputs: const [
     NumberInput(

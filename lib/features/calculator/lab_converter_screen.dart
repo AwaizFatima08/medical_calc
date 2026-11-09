@@ -163,7 +163,7 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
             const SizedBox(height: 12),
             if (widget.isLab)
               Text(
-                'Factors from standard SI conversion tables. Review pending.',
+                'Factors from standard SI conversion tables. Reviewed 9 Nov 2026 (Homi).',
                 style: text.bodySmall,
               ),
           ],

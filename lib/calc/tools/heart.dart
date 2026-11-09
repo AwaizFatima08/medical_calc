@@ -6,6 +6,7 @@ import '../units.dart';
 
 final mapCalc = CalcDefinition(
   id: 'map',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Standard formula',
   inputs: const [
     NumberInput(
@@ -76,6 +77,7 @@ const _chaItems = <InputSpec>[
 
 final cha2ds2vaCalc = CalcDefinition(
   id: 'cha2ds2va',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'CHA₂DS₂-VA (ESC 2024); CHA₂DS₂-VASc (ACC/AHA/ACCP/HRS 2023)',
   inputs: const [
     ChoiceInput(
@@ -201,6 +203,7 @@ const _hasBledItems = <InputSpec>[
 
 final hasBledCalc = CalcDefinition(
   id: 'hasbled',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'HAS-BLED (Pisters 2010)',
   inputs: _hasBledItems,
   compute: (v) => scoreResult(_hasBledItems, v, const [
@@ -231,6 +234,7 @@ final hasBledCalc = CalcDefinition(
 
 final qtcCalc = CalcDefinition(
   id: 'qtc',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Bazett 1920; Fridericia 1920',
   inputs: const [
     NumberInput(

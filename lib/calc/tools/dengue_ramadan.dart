@@ -63,6 +63,7 @@ String _range(double lo, double hi, double kg) =>
 
 final dengueCalc = CalcDefinition(
   id: 'dengue',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version:
       'WHO 2009 dengue guidelines; WHO 2012 handbook for clinical management',
   inputs: const [
@@ -383,6 +384,7 @@ const _ramadanItems = <InputSpec>[
 
 final ramadanRiskCalc = CalcDefinition(
   id: 'ramadan_risk',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'IDF-DAR Risk Calculator 2026 update (Afandi 2025)',
   inputs: _ramadanItems,
   compute: (v) {

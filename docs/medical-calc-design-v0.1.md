@@ -1,7 +1,7 @@
 # Medical Calc (working title) — App Design Document v0.1
 
 **Owner:** HomiLabs Solutions SMC Pvt Ltd
-**Prepared:** 9 November 2026 · **Status:** Draft for Homi's review. Decisions confirmed so far are in Section 14.1.
+**Prepared:** 9 November 2026 · **Status:** Release 1 built; all calculators reviewed and passed by Homi (9 Nov 2026). Decisions in Section 14.1.
 **Based on:** `reports/Health calculator tools for app.md` (research, 9 Nov 2026) and its notes in `research_notes/`.
 
 ---
@@ -336,6 +336,8 @@ Each batch: source check → golden vectors → code → tests → device test �
 | 14.6 | GCS commercial use | Follows from 14.4: email the GCS team (glasgowcomascale.org) before D11 ships |
 | 14.7 | Countries | All except the EU (L10) |
 | 14.12 | AdMob IDs | App "Medical Calc" (Android, not yet on a store): app ID `ca-app-pub-2087846699268567~1518498085`; banner unit "Home banner": `ca-app-pub-2087846699268567/7044101590` (created 9 Nov). Link the store listing in AdMob after the Play release |
+| 14.9 | BMI obese cut-off | Asian cut-offs as built: overweight 23, obese 25 (Homi's review, 9 Nov) |
+| 14.13 | Clinical review | All 38 tools reviewed and passed by Homi on 9 Nov 2026, with the open points in `docs/calculator-register.md` accepted as built (AHA/ACC 2025 BP categories, Hillier sodium headline, IDF-DAR 2026 with in-between totals in the higher band, WHO 2009/2012 dengue fluids) |
 | 14.10 | Release 1 size | Full Section 4 list, in batches (L11); all 37 tools kept after review of the list, plus D28 lab converter = 38 (Homi, 9 Nov) |
 
 ### 14.2 Still open
@@ -345,5 +347,4 @@ Each batch: source check → golden vectors → code → tests → device test �
 | 14.1 | **App name** | Keep "Medical Calc (working title)"; choose the real name before the store listing |
 | 14.3 | **WHO chart region** for Pakistan | Resolved 9 Nov: South Asia (Kaptoge 2019 appendix 1 lists Pakistan under South Asia) |
 | 14.5 | **Crashlytics**: include? | Yes — crash reports only, declared in Data safety; needs a Firebase project |
-| 14.9 | **BMI standard** default: obesity from 25 or 27.5? | Flag risk from 23 either way; reviewer decides the obesity line |
 | 14.11 | **Reviewer's name** | Homi to give it |

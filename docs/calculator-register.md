@@ -8,47 +8,47 @@ How to review a tool: open it in the app, check the inputs, bands and wording ag
 
 | Tool | Version / source | Golden cases | Open points | Reviewed by | Date |
 |---|---|---|---|---|---|
-| eGFR (CKD-EPI 2021) (`egfr`) | CKD-EPI 2021 creatinine (race-free) | 8 |  | | |
-| Creatinine clearance (Cockcroft-Gault) (`cockcroft_gault`) | Cockcroft-Gault 1976 | 4 |  | | |
-| Mean arterial pressure (`map`) | Standard formula | 4 |  | | |
-| QTc (`qtc`) | Bazett 1920; Fridericia 1920 | 7 | Female limit 460 ms (AHA 2009); no short-QT band | | |
-| CHA₂DS₂-VA (`cha2ds2va`) | CHA₂DS₂-VA (ESC 2024); CHA₂DS₂-VASc (ACC/AHA/ACCP/HRS 2023) | 9 |  | | |
-| HAS-BLED (`hasbled`) | HAS-BLED (Pisters 2010) | 4 |  | | |
-| Wells DVT / PE and PERC (`wells_perc`) | Wells DVT (2003), Wells PE (2000), PERC (Kline 2004) | 9 |  | | |
-| CURB-65 / CRB-65 (`curb65`) | CURB-65 / CRB-65 (Lim 2003; BTS 2009, NICE NG250 2025) | 7 |  | | |
-| NEWS2 (`news2`) | NEWS2 (Royal College of Physicians 2017) | 8 |  | | |
-| qSOFA (`qsofa`) | qSOFA (Sepsis-3, Seymour 2016) | 2 |  | | |
-| Glasgow Coma Scale (`gcs`) | Glasgow Coma Scale (Teasdale & Jennett 1974; 2014 structured approach) | 5 | Email GCS team about use in an ad-funded app | | |
-| Anion gap (`anion_gap`) | Anion gap; albumin correction (Figge 1998) | 3 |  | | |
-| Corrected calcium (`corrected_calcium`) | Payne 1973 (0.8 mg/dL per g/dL albumin below 4) | 3 |  | | |
-| Corrected sodium (`corrected_sodium`) | Katz 1973 (1.6) and Hillier 1999 (2.4) | 3 | Headline uses Hillier 2.4 (Katz 1.6 shown too) | | |
-| Serum osmolality and osmolal gap (`osmolality`) | Calculated osmolality 2Na + glucose/18 + BUN/2.8 | 3 |  | | |
-| BMI, BSA, ideal and adjusted weight (`body_size`) | BMI (WHO; Asian cut-offs WHO 2004), BSA Mosteller 1987, IBW Devine 1974 | 7 | Asian obese cut-off 25 (used) vs 27.5 (design 14.9) | | |
-| Gestational age and due date (`gestational_age`) | Naegele rule (LMP + 280 days); ACOG CO 700 (2017) for dating | 5 |  | | |
-| Bishop score (`bishop`) | Bishop 1964 | 5 |  | | |
-| Maintenance fluids (Holliday-Segar) (`holliday_segar`) | Holliday & Segar 1957 (4-2-1 rule) | 6 |  | | |
-| Parkland burns fluid (`parkland`) | Parkland formula (Baxter 1968); adult Rule of Nines | 3 |  | | |
-| WHO growth z-scores and MUAC (`who_growth`) | WHO Child Growth Standards 2006 (0–5 years); WHO 2013 SAM guideline (MUAC) | 8 | BMI-for-age not included (no expanded WHO table found) | | |
-| Dehydration and ORS plan (`dehydration`) | WHO 2005 diarrhoea treatment / IMCI 2014 | 6 |  | | |
-| APRI and FIB-4 (`apri_fib4`) | FIB-4 (Sterling 2006; MASLD cut-offs AASLD 2023); APRI (Wai 2003; WHO 2014/2024) | 6 | AST upper limit entered by user; cut-off pairs by disease | | |
-| Dengue assessment and fluids (`dengue`) | WHO 2009 dengue guidelines; WHO 2012 handbook for clinical management | 7 | WHO 2025 arboviral guideline not yet checked; NIH Pakistan list differs from WHO | | |
-| Ramadan fasting risk (IDF-DAR) (`ramadan_risk`) | IDF-DAR Risk Calculator 2026 update (Afandi 2025) | 7 | IDF-DAR 2026: totals like 3.25 put in the higher band; frailty text (2.5) vs figure (4) | | |
-| HbA1c ↔ average glucose (`a1c_eag`) | ADAG (Nathan 2008); ADA Standards of Care 2026 for diagnosis bands | 6 |  | | |
-| Infusion and drip rate (`drip_rate`) | Standard infusion arithmetic | 3 |  | | |
-| Lab unit converter (`lab_units`) | Unit factors (see units.dart) | 20 |  | | |
+| eGFR (CKD-EPI 2021) (`egfr`) | CKD-EPI 2021 creatinine (race-free) | 8 |  | Homi | 9 Nov 2026 |
+| Creatinine clearance (Cockcroft-Gault) (`cockcroft_gault`) | Cockcroft-Gault 1976 | 4 |  | Homi | 9 Nov 2026 |
+| Mean arterial pressure (`map`) | Standard formula | 4 |  | Homi | 9 Nov 2026 |
+| QTc (`qtc`) | Bazett 1920; Fridericia 1920 | 7 | Female limit 460 ms (AHA 2009); no short-QT band | Homi | 9 Nov 2026 |
+| CHA₂DS₂-VA (`cha2ds2va`) | CHA₂DS₂-VA (ESC 2024); CHA₂DS₂-VASc (ACC/AHA/ACCP/HRS 2023) | 9 |  | Homi | 9 Nov 2026 |
+| HAS-BLED (`hasbled`) | HAS-BLED (Pisters 2010) | 4 |  | Homi | 9 Nov 2026 |
+| Wells DVT / PE and PERC (`wells_perc`) | Wells DVT (2003), Wells PE (2000), PERC (Kline 2004) | 9 |  | Homi | 9 Nov 2026 |
+| CURB-65 / CRB-65 (`curb65`) | CURB-65 / CRB-65 (Lim 2003; BTS 2009, NICE NG250 2025) | 7 |  | Homi | 9 Nov 2026 |
+| NEWS2 (`news2`) | NEWS2 (Royal College of Physicians 2017) | 8 |  | Homi | 9 Nov 2026 |
+| qSOFA (`qsofa`) | qSOFA (Sepsis-3, Seymour 2016) | 2 |  | Homi | 9 Nov 2026 |
+| Glasgow Coma Scale (`gcs`) | Glasgow Coma Scale (Teasdale & Jennett 1974; 2014 structured approach) | 5 | Email GCS team about use in an ad-funded app | Homi | 9 Nov 2026 |
+| Anion gap (`anion_gap`) | Anion gap; albumin correction (Figge 1998) | 3 |  | Homi | 9 Nov 2026 |
+| Corrected calcium (`corrected_calcium`) | Payne 1973 (0.8 mg/dL per g/dL albumin below 4) | 3 |  | Homi | 9 Nov 2026 |
+| Corrected sodium (`corrected_sodium`) | Katz 1973 (1.6) and Hillier 1999 (2.4) | 3 | Headline uses Hillier 2.4 (Katz 1.6 shown too) | Homi | 9 Nov 2026 |
+| Serum osmolality and osmolal gap (`osmolality`) | Calculated osmolality 2Na + glucose/18 + BUN/2.8 | 3 |  | Homi | 9 Nov 2026 |
+| BMI, BSA, ideal and adjusted weight (`body_size`) | BMI (WHO; Asian cut-offs WHO 2004), BSA Mosteller 1987, IBW Devine 1974 | 7 | Asian obese cut-off 25 (used) vs 27.5 (design 14.9) | Homi | 9 Nov 2026 |
+| Gestational age and due date (`gestational_age`) | Naegele rule (LMP + 280 days); ACOG CO 700 (2017) for dating | 5 |  | Homi | 9 Nov 2026 |
+| Bishop score (`bishop`) | Bishop 1964 | 5 |  | Homi | 9 Nov 2026 |
+| Maintenance fluids (Holliday-Segar) (`holliday_segar`) | Holliday & Segar 1957 (4-2-1 rule) | 6 |  | Homi | 9 Nov 2026 |
+| Parkland burns fluid (`parkland`) | Parkland formula (Baxter 1968); adult Rule of Nines | 3 |  | Homi | 9 Nov 2026 |
+| WHO growth z-scores and MUAC (`who_growth`) | WHO Child Growth Standards 2006 (0–5 years); WHO 2013 SAM guideline (MUAC) | 8 | BMI-for-age not included (no expanded WHO table found) | Homi | 9 Nov 2026 |
+| Dehydration and ORS plan (`dehydration`) | WHO 2005 diarrhoea treatment / IMCI 2014 | 6 |  | Homi | 9 Nov 2026 |
+| APRI and FIB-4 (`apri_fib4`) | FIB-4 (Sterling 2006; MASLD cut-offs AASLD 2023); APRI (Wai 2003; WHO 2014/2024) | 6 | AST upper limit entered by user; cut-off pairs by disease | Homi | 9 Nov 2026 |
+| Dengue assessment and fluids (`dengue`) | WHO 2009 dengue guidelines; WHO 2012 handbook for clinical management | 7 | WHO 2025 arboviral guideline not yet checked; NIH Pakistan list differs from WHO | Homi | 9 Nov 2026 |
+| Ramadan fasting risk (IDF-DAR) (`ramadan_risk`) | IDF-DAR Risk Calculator 2026 update (Afandi 2025) | 7 | IDF-DAR 2026: totals like 3.25 put in the higher band; frailty text (2.5) vs figure (4) | Homi | 9 Nov 2026 |
+| HbA1c ↔ average glucose (`a1c_eag`) | ADAG (Nathan 2008); ADA Standards of Care 2026 for diagnosis bands | 6 |  | Homi | 9 Nov 2026 |
+| Infusion and drip rate (`drip_rate`) | Standard infusion arithmetic | 3 |  | Homi | 9 Nov 2026 |
+| Lab unit converter (`lab_units`) | Unit factors (see units.dart) | 20 |  | Homi | 9 Nov 2026 |
 
 ## Public mode
 
 | Tool | Version / source | Golden cases | Open points | Reviewed by | Date |
 |---|---|---|---|---|---|
-| BMI and waist check (`p_bmi`) | WHO 2004 Asian BMI cut-offs; IDF 2006 South Asian waist cut-offs | 6 | Same cut-off question as body_size | | |
-| Diabetes risk test (`p_diabetes_risk`) | Indian Diabetes Risk Score (Mohan 2005) | 4 | IDRS not validated in Pakistan; wording of activity options | | |
-| Blood pressure reading check (`p_bp`) | AHA/ACC 2025 high blood pressure guideline categories | 9 | Pakistan Hypertension League 2023 categories not yet compared with AHA/ACC 2025 | | |
-| Blood sugar reading check (`p_sugar`) | ADA Standards of Care 2026 (diagnosis and hypoglycaemia levels) | 10 |  | | |
-| 10-year heart risk (`p_heart_risk`) | WHO 2019 CVD risk chart, non-laboratory, South Asia (Kaptoge 2019) | 5 | Pakistan confirmed in South Asia region (Kaptoge 2019 appendix 1); BMI exactly 35 counted in ≥35 | | |
-| Pregnancy due date (`p_due_date`) | Naegele rule (LMP + 280 days) | 1 |  | | |
-| Dengue danger signs (`p_dengue`) | WHO 2009 dengue warning signs; NIH Pakistan dengue advisory 2025 | 2 |  | | |
-| Ramadan fasting check (`p_ramadan`) | Plain-language checklist based on IDF-DAR risk items (2021, 2026) | 3 | Plain-language checklist, not a validated score | | |
-| Heat risk check (`p_heat`) | US National Weather Service heat index (Rothfusz 1990) | 8 | Heat index bands are US NWS; no Pakistan-specific thresholds | | |
-| Unit converter (`p_units`) | Unit factors (see units.dart) | 6 |  | | |
+| BMI and waist check (`p_bmi`) | WHO 2004 Asian BMI cut-offs; IDF 2006 South Asian waist cut-offs | 6 | Same cut-off question as body_size | Homi | 9 Nov 2026 |
+| Diabetes risk test (`p_diabetes_risk`) | Indian Diabetes Risk Score (Mohan 2005) | 4 | IDRS not validated in Pakistan; wording of activity options | Homi | 9 Nov 2026 |
+| Blood pressure reading check (`p_bp`) | AHA/ACC 2025 high blood pressure guideline categories | 9 | Pakistan Hypertension League 2023 categories not yet compared with AHA/ACC 2025 | Homi | 9 Nov 2026 |
+| Blood sugar reading check (`p_sugar`) | ADA Standards of Care 2026 (diagnosis and hypoglycaemia levels) | 10 |  | Homi | 9 Nov 2026 |
+| 10-year heart risk (`p_heart_risk`) | WHO 2019 CVD risk chart, non-laboratory, South Asia (Kaptoge 2019) | 5 | Pakistan confirmed in South Asia region (Kaptoge 2019 appendix 1); BMI exactly 35 counted in ≥35 | Homi | 9 Nov 2026 |
+| Pregnancy due date (`p_due_date`) | Naegele rule (LMP + 280 days) | 1 |  | Homi | 9 Nov 2026 |
+| Dengue danger signs (`p_dengue`) | WHO 2009 dengue warning signs; NIH Pakistan dengue advisory 2025 | 2 |  | Homi | 9 Nov 2026 |
+| Ramadan fasting check (`p_ramadan`) | Plain-language checklist based on IDF-DAR risk items (2021, 2026) | 3 | Plain-language checklist, not a validated score | Homi | 9 Nov 2026 |
+| Heat risk check (`p_heat`) | US National Weather Service heat index (Rothfusz 1990) | 8 | Heat index bands are US NWS; no Pakistan-specific thresholds | Homi | 9 Nov 2026 |
+| Unit converter (`p_units`) | Unit factors (see units.dart) | 6 |  | Homi | 9 Nov 2026 |
 

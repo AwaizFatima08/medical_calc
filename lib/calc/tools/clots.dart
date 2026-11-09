@@ -97,6 +97,7 @@ const _percItems = <InputSpec>[
 
 final wellsPercCalc = CalcDefinition(
   id: 'wells_perc',
+  reviewedOn: '9 Nov 2026 (Homi)',
   version: 'Wells DVT (2003), Wells PE (2000), PERC (Kline 2004)',
   inputs: const [
     ChoiceInput(
