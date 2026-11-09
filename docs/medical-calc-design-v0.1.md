@@ -202,7 +202,8 @@ Mode, units default, BMI standard, clear recents and favourites, privacy / ad ch
 - **No interstitials** in release 1 (they interrupt clinical use). A rewarded or interstitial ad can be reconsidered later only at a natural break, with a cap.
 - **Consent:** Google UMP consent form at first launch where required (UK and other regions with consent rules), reopenable from Settings. Non-personalised ads where consent is refused.
 - **Ad content:** block sensitive categories in AdMob (pharmacy/prescription drugs, dating, gambling, "miracle cure" health) so no ad looks like medical advice.
-- **Development:** Google's test ad unit IDs only; real IDs come from the AdMob app Homi creates under homilabs.smc@gmail.com and are kept in `lib/app/config.dart` (app ID in AndroidManifest). Never click own live ads.
+- **IDs:** app `ca-app-pub-2087846699268567~1518498085` (AndroidManifest), banner `ca-app-pub-2087846699268567/7044101590` (`lib/app/config.dart`). Debug builds use Google's test banner ID; only release builds use the real unit. Never tap own live ads.
+- **Sensitive-category blocking** in AdMob is account-wide (affects all HomiLabs apps) — not changed; waiting for Homi's decision.
 - **Play:** "Contains ads" declared; Data safety lists the data the AdMob SDK collects (device / advertising ID, approximate location, app interactions).
 
 ### S9 — About
@@ -334,6 +335,7 @@ Each batch: source check → golden vectors → code → tests → clinician rev
 | 14.4 | Money | Free with AdMob ads, account homilabs.smc@gmail.com (L9, Section 6.1) |
 | 14.6 | GCS commercial use | Follows from 14.4: email the GCS team (glasgowcomascale.org) before D11 ships |
 | 14.7 | Countries | All except the EU (L10) |
+| 14.12 | AdMob IDs | App "Medical Calc" (Android, not yet on a store): app ID `ca-app-pub-2087846699268567~1518498085`; banner unit "Home banner": `ca-app-pub-2087846699268567/7044101590` (created 9 Nov). Link the store listing in AdMob after the Play release |
 | 14.10 | Release 1 size | Full Section 4 list, in batches (L11); all 37 tools kept after review of the list, plus D28 lab converter = 38 (Homi, 9 Nov) |
 
 ### 14.2 Still open
@@ -345,4 +347,3 @@ Each batch: source check → golden vectors → code → tests → clinician rev
 | 14.5 | **Crashlytics**: include? | Yes — crash reports only, declared in Data safety; needs a Firebase project |
 | 14.9 | **BMI standard** default: obesity from 25 or 27.5? | Flag risk from 23 either way; reviewer decides the obesity line |
 | 14.11 | **Reviewer's name** | Homi to give it |
-| 14.12 | **AdMob app and ad unit IDs** | Homi creates the Android app (and one banner unit) in AdMob under homilabs.smc@gmail.com once the package name is final, and pastes the app ID and unit ID here; until then test IDs |
