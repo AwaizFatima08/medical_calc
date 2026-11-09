@@ -8,11 +8,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:medicalcalc/calc/model.dart';
 import 'package:medicalcalc/calc/registry.dart';
 import 'package:medicalcalc/calc/units.dart';
+import 'package:medicalcalc/calc/who_cvd.dart';
 import 'package:medicalcalc/calc/who_growth.dart';
 
-Map<String, dynamic> _load(String id) => jsonDecode(
-  File('test/golden/$id.json').readAsStringSync(),
-) as Map<String, dynamic>;
+Map<String, dynamic> _load(String id) =>
+    jsonDecode(File('test/golden/$id.json').readAsStringSync())
+        as Map<String, dynamic>;
 
 Inputs _inputs(Map<String, dynamic> raw) => Inputs({
   for (final e in raw.entries)
@@ -25,6 +26,10 @@ Inputs _inputs(Map<String, dynamic> raw) => Inputs({
 void main() {
   WhoGrowth.instance = WhoGrowth.fromJson(
     jsonDecode(File('assets/who_growth.json').readAsStringSync())
+        as Map<String, dynamic>,
+  );
+  WhoCvdChart.instance = WhoCvdChart.fromJson(
+    jsonDecode(File('assets/who_cvd_south_asia_nonlab.json').readAsStringSync())
         as Map<String, dynamic>,
   );
 

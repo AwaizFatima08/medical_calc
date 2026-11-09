@@ -5,6 +5,7 @@ import 'dart:math' as math;
 
 import '../model.dart';
 import '../units.dart';
+import '../who_cvd.dart';
 import 'body.dart' show bmi, bmiBand;
 
 const _inCm = (id: 'hunit', value: 0);
@@ -812,5 +813,134 @@ final publicRamadanCalc = CalcDefinition(
   ],
   notes: const [
     'For people with diabetes. This checklist does not replace a doctor\'s assessment.',
+  ],
+);
+
+// ---- P5 10-year heart risk (WHO 2019 non-lab chart, South Asia) ----
+
+final publicHeartRiskCalc = CalcDefinition(
+  id: 'p_heart_risk',
+  version: 'WHO 2019 CVD risk chart, non-laboratory, South Asia (Kaptoge 2019)',
+  inputs: const [
+    NumberInput(
+      'age',
+      'Your age',
+      quantity: Q.age,
+      min: 18,
+      max: 100,
+      decimals: 0,
+    ),
+    ChoiceInput(
+      'sex',
+      'You are',
+      initial: 0,
+      choices: [Choice('Man', 0), Choice('Woman', 1)],
+    ),
+    ChoiceInput(
+      'smoker',
+      'Do you smoke cigarettes?',
+      choices: [Choice('Yes', 1), Choice('No', 0)],
+    ),
+    NumberInput(
+      'sbp',
+      'Top blood pressure number (systolic)',
+      quantity: Q.bp,
+      min: 70,
+      max: 260,
+      decimals: 0,
+    ),
+    NumberInput('weight', 'Weight', quantity: Q.weight, min: 25, max: 250),
+    ..._heightInputs,
+  ],
+  compute: (v) {
+    final chart = WhoCvdChart.instance;
+    final age = v.number('age'),
+        sex = v.choice('sex'),
+        smoker = v.choice('smoker');
+    final sbp = v.number('sbp'), kg = v.number('weight'), cm = _heightCm(v);
+    if ([age, sex, smoker, sbp, kg, cm].contains(null)) return null;
+    if (chart == null) {
+      return const CalcResult(
+        headline: '—',
+        warnings: ['Chart is still loading.'],
+      );
+    }
+    final band = WhoCvdChart.ageBand(age!);
+    if (band == null) {
+      return const CalcResult(
+        headline: '—',
+        severity: Severity.caution,
+        warnings: [
+          'The WHO chart is for ages 40–74. Ask your doctor how to check your heart risk.',
+        ],
+      );
+    }
+    final b = bmi(kg!, cm!);
+    final risk = chart.risk(
+      female: sex == 1,
+      smoker: smoker == 1,
+      ageBand: band,
+      sbp: sbp!,
+      bmi: b,
+    );
+    final (label, sev, msg) = risk >= 30
+        ? (
+            'Very high risk (30% or more)',
+            Severity.danger,
+            'Your risk is very high. See a doctor soon for blood tests (cholesterol, sugar) and treatment.',
+          )
+        : risk >= 20
+        ? (
+            'High risk (20–29%)',
+            Severity.danger,
+            'Your risk is high. See a doctor for a check-up with blood tests.',
+          )
+        : risk >= 10
+        ? (
+            'Moderate risk (10–19%)',
+            Severity.warning,
+            'See a doctor for a check-up with cholesterol and sugar tests.',
+          )
+        : risk >= 5
+        ? (
+            'Low–moderate risk (5–9%)',
+            Severity.caution,
+            'Keep your blood pressure and weight down, stay active and do not smoke.',
+          )
+        : (
+            'Low risk (below 5%)',
+            Severity.normal,
+            'Your risk is low. Keep up a healthy life.',
+          );
+    return CalcResult(
+      headline: '$risk%',
+      unit: 'chance in 10 years',
+      band: label,
+      severity: sev,
+      interpretation: msg,
+      details: [
+        'About $risk out of 100 people like you will have a heart attack or stroke in the next 10 years.',
+        if (smoker == 1)
+          'Stopping smoking is the biggest single change you can make.',
+        'BMI used: ${fmt(b)}. Chart band for blood pressure and BMI as printed by WHO.',
+        'People who already had a heart attack or stroke, or have diabetes or kidney disease, need a doctor\'s assessment instead.',
+      ],
+    );
+  },
+  formula:
+      'Look-up in the WHO 2019 South Asia non-laboratory chart by sex, smoking, age band (40–74), systolic BP band and BMI band. '
+      'Each cell is the 10-year risk of fatal or non-fatal heart attack or stroke.',
+  sources: const [
+    Source(
+      'Kaptoge S et al. World Health Organization cardiovascular disease risk charts: revised models to estimate risk in 21 global regions. Lancet Glob Health 2019;7:e1332-45 (appendix 2, South Asia non-laboratory chart, p. 36).',
+      url: 'https://doi.org/10.1016/S2214-109X(19)30318-3',
+    ),
+    Source(
+      'WHO. HEARTS technical package: risk-based CVD management, 2020.',
+      url: 'https://www.who.int/publications/i/item/9789240001367',
+    ),
+  ],
+  notes: const [
+    'For people aged 40–74 without known heart disease, stroke, diabetes or kidney disease.',
   ],
 );

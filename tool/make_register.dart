@@ -54,5 +54,5 @@ const _open = <String, String>{
   'qtc': 'Female limit 460 ms (AHA 2009); no short-QT band',
   'p_heat': 'Heat index bands are US NWS; no Pakistan-specific thresholds',
   'who_growth': 'BMI-for-age not included (no expanded WHO table found)',
-  'p_heart_risk': 'WHO 2019 chart region for Pakistan to confirm',
+  'p_heart_risk': 'Pakistan confirmed in South Asia region (Kaptoge 2019 appendix 1); BMI exactly 35 counted in ≥35',
 };

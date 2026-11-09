@@ -343,7 +343,7 @@ Each batch: source check → golden vectors → code → tests → device test �
 | # | Question | Recommendation |
 |---|---|---|
 | 14.1 | **App name** | Keep "Medical Calc (working title)"; choose the real name before the store listing |
-| 14.3 | **WHO chart region** for Pakistan (South Asia vs Eastern Mediterranean) | Developer checks the WHO 2019 publication; reviewer confirms |
+| 14.3 | **WHO chart region** for Pakistan | Resolved 9 Nov: South Asia (Kaptoge 2019 appendix 1 lists Pakistan under South Asia) |
 | 14.5 | **Crashlytics**: include? | Yes — crash reports only, declared in Data safety; needs a Firebase project |
 | 14.9 | **BMI standard** default: obesity from 25 or 27.5? | Flag risk from 23 either way; reviewer decides the obesity line |
 | 14.11 | **Reviewer's name** | Homi to give it |

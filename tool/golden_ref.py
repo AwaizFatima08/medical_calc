@@ -472,4 +472,17 @@ write('who_growth', 'Independent LMS implementation on the WHO 2006 expanded tab
   growth('oedema → SAM', True, 20, 10.0, 80.0, oedema=True, band='Severe acute malnutrition (SAM)'),
   growth('overweight 4-year girl', True, 48, 22.0, 102.0),
 ])
+
+# ================= WHO CVD chart (cells read by hand from appendix 2 p. 36 image) =================
+def hr(age, sex, smoker, sbp, kg, cm, risk):
+    return {'name': f'{"F" if sex else "M"} {age} smoker={smoker} SBP {sbp} {kg}kg {cm}cm', 
+            'inputs': {'age': age, 'sex': sex, 'smoker': smoker, 'sbp': sbp, 'weight': kg, 'hunit': 0, 'height': cm},
+            'expect': {'headline': f'{risk}%'}}
+write('p_heart_risk', 'Values read directly from the printed chart image (Kaptoge 2019 appendix 2, South Asia non-lab), 9 Nov 2026', [
+  hr(72, 0, 1, 190, 100, 160, 40),   # men smoker 70-74 >=180 BMI 39 -> 40
+  hr(42, 1, 0, 110, 45, 160, 1),     # women nonsmoker 40-44 <120 BMI 17.6 -> 1
+  hr(57, 0, 0, 150, 85, 170, 9),     # men nonsmoker 55-59 140-159 BMI 29.4 -> 9
+  hr(62, 1, 1, 170, 70, 160, 19),    # women smoker 60-64 160-179 BMI 27.3 -> 19
+  hr(47, 0, 1, 125, 60, 175, 5),     # men smoker 45-49 120-139 BMI 19.6 -> 5
+])
 print('golden files written')

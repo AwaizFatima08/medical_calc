@@ -45,7 +45,7 @@ How to review a tool: open it in the app, check the inputs, bands and wording ag
 | Diabetes risk test (`p_diabetes_risk`) | Indian Diabetes Risk Score (Mohan 2005) | 4 | IDRS not validated in Pakistan; wording of activity options | | |
 | Blood pressure reading check (`p_bp`) | AHA/ACC 2025 high blood pressure guideline categories | 9 | Pakistan Hypertension League 2023 categories not yet compared with AHA/ACC 2025 | | |
 | Blood sugar reading check (`p_sugar`) | ADA Standards of Care 2026 (diagnosis and hypoglycaemia levels) | 10 |  | | |
-| 10-year heart risk (`p_heart_risk`) | **Not built yet** | 0 | WHO 2019 chart region for Pakistan to confirm | | |
+| 10-year heart risk (`p_heart_risk`) | WHO 2019 CVD risk chart, non-laboratory, South Asia (Kaptoge 2019) | 5 | Pakistan confirmed in South Asia region (Kaptoge 2019 appendix 1); BMI exactly 35 counted in ≥35 | | |
 | Pregnancy due date (`p_due_date`) | Naegele rule (LMP + 280 days) | 1 |  | | |
 | Dengue danger signs (`p_dengue`) | WHO 2009 dengue warning signs; NIH Pakistan dengue advisory 2025 | 2 |  | | |
 | Ramadan fasting check (`p_ramadan`) | Plain-language checklist based on IDF-DAR risk items (2021, 2026) | 3 | Plain-language checklist, not a validated score | | |

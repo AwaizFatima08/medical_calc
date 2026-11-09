@@ -49,6 +49,7 @@ final Map<String, CalcDefinition> kCalculators = {
     publicDueDateCalc,
     publicHeatCalc,
     publicDengueCalc,
+    publicHeartRiskCalc,
     publicRamadanCalc,
   ])
     c.id: c,

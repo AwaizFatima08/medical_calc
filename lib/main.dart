@@ -10,6 +10,7 @@ import 'app/config.dart';
 import 'app/router.dart';
 import 'app/settings.dart';
 import 'app/theme.dart';
+import 'calc/who_cvd.dart';
 import 'calc/who_growth.dart';
 
 Future<void> main() async {
@@ -17,6 +18,12 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   WhoGrowth.instance = WhoGrowth.fromJson(
     jsonDecode(await rootBundle.loadString('assets/who_growth.json'))
+        as Map<String, dynamic>,
+  );
+  WhoCvdChart.instance = WhoCvdChart.fromJson(
+    jsonDecode(
+          await rootBundle.loadString('assets/who_cvd_south_asia_nonlab.json'),
+        )
         as Map<String, dynamic>,
   );
   final container = ProviderContainer(

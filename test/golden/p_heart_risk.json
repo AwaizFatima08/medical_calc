@@ -1,0 +1,81 @@
+{
+ "id": "p_heart_risk",
+ "source": "Values read directly from the printed chart image (Kaptoge 2019 appendix 2, South Asia non-lab), 9 Nov 2026",
+ "cases": [
+  {
+   "name": "M 72 smoker=1 SBP 190 100kg 160cm",
+   "inputs": {
+    "age": 72,
+    "sex": 0,
+    "smoker": 1,
+    "sbp": 190,
+    "weight": 100,
+    "hunit": 0,
+    "height": 160
+   },
+   "expect": {
+    "headline": "40%"
+   }
+  },
+  {
+   "name": "F 42 smoker=0 SBP 110 45kg 160cm",
+   "inputs": {
+    "age": 42,
+    "sex": 1,
+    "smoker": 0,
+    "sbp": 110,
+    "weight": 45,
+    "hunit": 0,
+    "height": 160
+   },
+   "expect": {
+    "headline": "1%"
+   }
+  },
+  {
+   "name": "M 57 smoker=0 SBP 150 85kg 170cm",
+   "inputs": {
+    "age": 57,
+    "sex": 0,
+    "smoker": 0,
+    "sbp": 150,
+    "weight": 85,
+    "hunit": 0,
+    "height": 170
+   },
+   "expect": {
+    "headline": "9%"
+   }
+  },
+  {
+   "name": "F 62 smoker=1 SBP 170 70kg 160cm",
+   "inputs": {
+    "age": 62,
+    "sex": 1,
+    "smoker": 1,
+    "sbp": 170,
+    "weight": 70,
+    "hunit": 0,
+    "height": 160
+   },
+   "expect": {
+    "headline": "19%"
+   }
+  },
+  {
+   "name": "M 47 smoker=1 SBP 125 60kg 175cm",
+   "inputs": {
+    "age": 47,
+    "sex": 0,
+    "smoker": 1,
+    "sbp": 125,
+    "weight": 60,
+    "hunit": 0,
+    "height": 175
+   },
+   "expect": {
+    "headline": "5%"
+   }
+  }
+ ]
+}
