@@ -19,6 +19,7 @@ class ToolScreen extends StatelessWidget {
       final def = kCalculators[tool.id];
       if (def != null) return CalculatorScreen(tool: tool, def: def);
       if (tool.id == 'lab_units') return const LabConverterScreen();
+      if (tool.id == 'p_units') return const LabConverterScreen.everyday();
     }
     final text = Theme.of(context).textTheme;
     return Scaffold(

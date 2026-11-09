@@ -65,6 +65,7 @@ class ResultCard extends StatelessWidget {
                 style: text.bodyMedium,
               )
             else ...[
+              if (r.emergency != null) _Emergency(r.emergency!),
               Wrap(
                 crossAxisAlignment: WrapCrossAlignment.end,
                 spacing: 6,
@@ -187,6 +188,56 @@ class ResultCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _Emergency extends StatelessWidget {
+  const _Emergency(this.message);
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: const Key('emergency'),
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFC62828),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              Icon(Icons.emergency, color: Colors.white),
+              SizedBox(width: 8),
+              Text(
+                'Get medical help now',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(message, style: const TextStyle(color: Colors.white)),
+          const SizedBox(height: 10),
+          FilledButton.icon(
+            style: FilledButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: const Color(0xFFC62828),
+            ),
+            icon: const Icon(Icons.call),
+            label: const Text('Call 1122'),
+            onPressed: () => launchUrl(Uri.parse('tel:1122')),
+          ),
+        ],
       ),
     );
   }

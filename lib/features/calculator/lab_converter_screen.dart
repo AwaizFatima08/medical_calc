@@ -8,14 +8,29 @@ import '../../shared/readable_width.dart';
 /// D28: conventional (mg/dL, g/dL…) ↔ SI (mmol/L, µmol/L, g/L). Typing in any
 /// unit's box updates the others.
 class LabConverterScreen extends StatefulWidget {
-  const LabConverterScreen({super.key});
+  const LabConverterScreen({
+    super.key,
+    this.title = 'Lab unit converter',
+    this.quantities = kLabConverterTests,
+    this.isLab = true,
+  });
+
+  /// P10 public converter: sugar, temperature, height, weight.
+  const LabConverterScreen.everyday({super.key})
+    : title = 'Unit converter',
+      quantities = kPublicConverterQuantities,
+      isLab = false;
+
+  final String title;
+  final List<Quantity> quantities;
+  final bool isLab;
 
   @override
   State<LabConverterScreen> createState() => _LabConverterScreenState();
 }
 
 class _LabConverterScreenState extends State<LabConverterScreen> {
-  Quantity _test = kLabConverterTests.first;
+  late Quantity _test = widget.quantities.first;
   final List<TextEditingController> _fields = [];
 
   @override
@@ -41,8 +56,26 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
     super.dispose();
   }
 
+  String? _feetInches;
+
   void _onChanged(int index, String raw) {
     final v = double.tryParse(raw.trim().replaceAll(',', '.'));
+    if (_test == Q.height) {
+      setState(() {
+        if (v == null) {
+          _feetInches = null;
+        } else {
+          final totalIn = _test.units[index].toBase(v) / 2.54;
+          var ft = totalIn ~/ 12;
+          var inch = (totalIn - ft * 12).round();
+          if (inch == 12) {
+            ft++;
+            inch = 0;
+          }
+          _feetInches = '= $ft ft $inch in';
+        }
+      });
+    }
     for (var i = 0; i < _fields.length; i++) {
       if (i == index) continue;
       _fields[i].text = v == null
@@ -66,7 +99,7 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('Lab unit converter')),
+      appBar: AppBar(title: Text(widget.title)),
       body: ReadableWidth(
         child: ListView(
           padding: const EdgeInsets.all(16),
@@ -74,13 +107,16 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
             DropdownButtonFormField<Quantity>(
               key: const Key('lab_test'),
               initialValue: _test,
-              decoration: const InputDecoration(labelText: 'Test'),
+              decoration: InputDecoration(
+                labelText: widget.isLab ? 'Test' : 'Convert',
+              ),
               items: [
-                for (final q in kLabConverterTests)
+                for (final q in widget.quantities)
                   DropdownMenuItem(value: q, child: Text(q.name)),
               ],
               onChanged: (q) => setState(() {
                 _test = q!;
+                _feetInches = null;
                 _resetFields();
               }),
             ),
@@ -97,7 +133,9 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
                 ],
                 decoration: InputDecoration(
                   labelText: u.label,
-                  helperText: u.si
+                  helperText: !widget.isLab
+                      ? null
+                      : u.si
                       ? 'SI unit'
                       : (i == 0 ? 'Conventional unit' : null),
                 ),
@@ -111,6 +149,10 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
             for (final u in _test.units)
               if (_factorLine(u).isNotEmpty)
                 Text(_factorLine(u), style: text.bodySmall),
+            if (_test == Q.height && _feetInches != null) ...[
+              const SizedBox(height: 4),
+              Text(_feetInches!, style: text.titleMedium),
+            ],
             if (_test == Q.urea) ...[
               const SizedBox(height: 4),
               Text(
@@ -119,10 +161,11 @@ class _LabConverterScreenState extends State<LabConverterScreen> {
               ),
             ],
             const SizedBox(height: 12),
-            Text(
-              'Factors from standard SI conversion tables. Review pending.',
-              style: text.bodySmall,
-            ),
+            if (widget.isLab)
+              Text(
+                'Factors from standard SI conversion tables. Review pending.',
+                style: text.bodySmall,
+              ),
           ],
         ),
       ),

@@ -319,7 +319,7 @@ const List<ToolInfo> kTools = [
   ToolInfo(
     id: 'p_sugar',
     name: 'Blood sugar reading check',
-    summary: 'Glucometer reading and HbA1c',
+    summary: 'What your glucometer reading means',
     category: Categories.sugar,
     mode: ToolMode.public,
     aliases: ['sugar', 'glucose', 'glucometer', 'hba1c'],

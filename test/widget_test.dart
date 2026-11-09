@@ -70,7 +70,7 @@ void main() {
     await pumpApp(tester, {'mode': 'public'});
     await tester.tap(find.text('BMI and waist check'));
     await tester.pumpAndSettle();
-    expect(find.text('Coming in an update'), findsOneWidget);
+    expect(find.text('Result'), findsOneWidget);
     await tester.pageBack();
     await tester.pumpAndSettle();
     expect(find.text('Recently used'), findsOneWidget);

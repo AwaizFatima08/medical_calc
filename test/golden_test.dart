@@ -48,6 +48,13 @@ void main() {
           if (expected.containsKey('band')) {
             expect(result!.band, expected['band']);
           }
+          if (expected.containsKey('emergency')) {
+            expect(
+              result!.emergency != null,
+              expected['emergency'],
+              reason: 'emergency alert',
+            );
+          }
           if (expected.containsKey('detail')) {
             expect(
               result!.details.join('\n'),
@@ -59,19 +66,27 @@ void main() {
     });
   }
 
-  group('lab_units', () {
-    final byId = {for (final q in kLabConverterTests) q.id: q};
-    final file = _load('lab_units');
-    for (final c in (file['cases'] as List).cast<Map<String, dynamic>>()) {
-      test(c['name'] as String, () {
-        final q = byId[c['quantity']]!;
-        final unit = q.units.firstWhere((u) => u.label == c['unit']);
-        final base = unit.toBase((c['value'] as num).toDouble());
-        expect(base, closeTo((c['base'] as num).toDouble(), 0.01));
-        expect(unit.fromBase(base), closeTo((c['value'] as num).toDouble(), 1e-9));
-      });
-    }
-  });
+  for (final id in kCustomScreens) {
+    group(id, () {
+      final byId = {
+        for (final q in [...kLabConverterTests, ...kPublicConverterQuantities])
+          q.id: q,
+      };
+      final file = _load(id);
+      for (final c in (file['cases'] as List).cast<Map<String, dynamic>>()) {
+        test(c['name'] as String, () {
+          final q = byId[c['quantity']]!;
+          final unit = q.units.firstWhere((u) => u.label == c['unit']);
+          final base = unit.toBase((c['value'] as num).toDouble());
+          expect(base, closeTo((c['base'] as num).toDouble(), 0.01));
+          expect(
+            unit.fromBase(base),
+            closeTo((c['value'] as num).toDouble(), 1e-9),
+          );
+        });
+      }
+    });
+  }
 
   test('incomplete inputs give no result', () {
     for (final def in kCalculators.values) {

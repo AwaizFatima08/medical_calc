@@ -10,6 +10,7 @@ import 'tools/kidney.dart';
 import 'tools/lab.dart';
 import 'tools/liver_diabetes.dart';
 import 'tools/mother_child.dart';
+import 'tools/public.dart';
 
 final Map<String, CalcDefinition> kCalculators = {
   for (final c in [
@@ -37,12 +38,18 @@ final Map<String, CalcDefinition> kCalculators = {
     apriFib4Calc,
     a1cEagCalc,
     dripRateCalc,
+    publicBmiCalc,
+    publicDiabetesRiskCalc,
+    publicBpCalc,
+    publicSugarCalc,
+    publicDueDateCalc,
+    publicHeatCalc,
   ])
     c.id: c,
 };
 
 /// Tools with their own screen rather than a CalcDefinition.
-const Set<String> kCustomScreens = {'lab_units'};
+const Set<String> kCustomScreens = {'lab_units', 'p_units'};
 
 bool isWorking(String id) =>
     kCalculators.containsKey(id) || kCustomScreens.contains(id);

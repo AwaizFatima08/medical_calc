@@ -297,4 +297,92 @@ write('drip_rate', 'mL/h = V/t; drops/min = mL/h × factor / 60; by hand', [
   {'name': '500 mL over 4 h, 15 drop set', 'inputs': {'volume': 500, 'time': 4, 'factor': 15}, 'expect': {'headline': '125', 'band': '31 drops/min'}},
   {'name': '100 mL over 30 min, 60 micro', 'inputs': {'volume': 100, 'time': 0.5, 'factor': 60}, 'expect': {'headline': '200', 'band': '200 drops/min'}},
 ])
+
+# ================= Public mode =================
+write('p_units', 'Exact definitions: 1 in = 2.54 cm, 1 lb = 0.45359237 kg, °F = °C × 9/5 + 32; glucose 18.016', [
+  {'name': '5.5 mmol/L', 'quantity': 'glucose', 'unit': 'mmol/L', 'value': 5.5, 'base': 99.088},
+  {'name': '98.6 °F = 37 °C', 'quantity': 'temperature', 'unit': '°F', 'value': 98.6, 'base': 37.0},
+  {'name': '104 °F = 40 °C', 'quantity': 'temperature', 'unit': '°F', 'value': 104, 'base': 40.0},
+  {'name': '5.5 ft = 167.64 cm', 'quantity': 'height', 'unit': 'ft', 'value': 5.5, 'base': 167.64},
+  {'name': '66 in = 167.64 cm', 'quantity': 'height', 'unit': 'in', 'value': 66, 'base': 167.64},
+  {'name': '154 lb = 69.85 kg', 'quantity': 'weight', 'unit': 'lb', 'value': 154, 'base': 69.853},
+])
+def pb(kg, ft=None, inch=None, cm=None, sex=0, waist=None):
+    i = {'weight': kg, 'sex': sex}
+    if cm is not None: i.update({'hunit': 0, 'height': cm}); h = cm
+    else:
+        i.update({'hunit': 1, 'feet': ft}); h = (ft*12 + (inch or 0))*2.54
+        if inch is not None: i['inches'] = inch
+    if waist is not None: i['waist'] = waist
+    return i, kg/(h/100)**2
+cases = []
+for args, band in [((70,), dict(ft=5, inch=6), ), ]: pass
+for kwargs, band in [(dict(kg=70, ft=5, inch=6), 'Overweight / at risk'), (dict(kg=80, ft=5, inch=6), 'Obese class I'), (dict(kg=60, ft=5, inch=6), 'Normal'),
+                     (dict(kg=63, cm=165), 'Overweight / at risk'), (dict(kg=45, cm=165), 'Underweight')]:
+    i, b = pb(**kwargs)
+    cases.append({'name': f'{kwargs} → {b:.2f}', 'inputs': i, 'expect': {'headline': r(b, 1), 'band': band}})
+i, b = pb(80, cm=170, sex=1, waist=85)
+cases.append({'name': 'woman waist 85 ≥ 80', 'inputs': i, 'expect': {'detail': 'is at or above 80 cm'}})
+write('p_bmi', 'BMI with WHO 2004 Asian cut-offs; 5 ft 6 in = 167.64 cm; reference implementation', cases)
+write('p_diabetes_risk', 'IDRS point table (Mohan 2005), by hand', [
+  {'name': 'young, slim, active, no family = 0', 'inputs': {'age': 0, 'waist': 0, 'activity': 0, 'family': 0}, 'expect': {'headline': '0', 'band': 'Low risk'}},
+  {'name': '20+10+0+0 = 30 medium', 'inputs': {'age': 20, 'waist': 10, 'activity': 0, 'family': 0}, 'expect': {'headline': '30', 'band': 'Medium risk'}},
+  {'name': '30+10+20+0 = 60 high', 'inputs': {'age': 30, 'waist': 10, 'activity': 20, 'family': 0}, 'expect': {'headline': '60', 'band': 'High risk'}},
+  {'name': 'max 100', 'inputs': {'age': 30, 'waist': 20, 'activity': 30, 'family': 20}, 'expect': {'headline': '100', 'band': 'High risk'}},
+])
+def bp(s_, d_, **sym):
+    i = {'sbp': s_, 'dbp': d_}
+    for k in ['s_chest','s_breath','s_weak','s_vision','s_head']: i[k] = sym.get(k, False)
+    return i
+write('p_bp', 'AHA/ACC 2025 categories, by hand', [
+  {'name': '118/76 normal', 'inputs': bp(118, 76), 'expect': {'headline': '118/76', 'band': 'Normal', 'emergency': False}},
+  {'name': '125/78 elevated', 'inputs': bp(125, 78), 'expect': {'band': 'Elevated'}},
+  {'name': '128/82 stage 1 (diastolic)', 'inputs': bp(128, 82), 'expect': {'band': 'High: stage 1'}},
+  {'name': '145/85 stage 2', 'inputs': bp(145, 85), 'expect': {'band': 'High: stage 2', 'emergency': False}},
+  {'name': '180/110 stage 2, not severe', 'inputs': bp(180, 110), 'expect': {'band': 'High: stage 2'}},
+  {'name': '190/100 severe, no symptoms', 'inputs': bp(190, 100), 'expect': {'band': 'Severely high', 'emergency': False}},
+  {'name': '190/100 + chest pain → emergency', 'inputs': bp(190, 100, s_chest=True), 'expect': {'band': 'Severely high', 'emergency': True}},
+  {'name': '130/85 + weakness → emergency', 'inputs': bp(130, 85, s_weak=True), 'expect': {'band': 'High: stage 1', 'emergency': True}},
+  {'name': '85/55 low', 'inputs': bp(85, 55), 'expect': {'band': 'Low'}},
+])
+def sg(g, when, **sym):
+    i = {'glu': g, 'when': when}
+    for k in ['s_drowsy','s_vomit']: i[k] = sym.get(k, False)
+    return i
+write('p_sugar', 'ADA 2026 thresholds, by hand', [
+  {'name': 'fasting 92', 'inputs': sg(92, 0), 'expect': {'band': 'Normal fasting sugar'}},
+  {'name': 'fasting 100', 'inputs': sg(100, 0), 'expect': {'band': 'Raised (prediabetes range)'}},
+  {'name': 'fasting 126', 'inputs': sg(126, 0), 'expect': {'band': 'High (diabetes range if repeated)'}},
+  {'name': 'after meal 139', 'inputs': sg(139, 1), 'expect': {'band': 'Normal after a meal'}},
+  {'name': 'after meal 200', 'inputs': sg(200, 1), 'expect': {'band': 'High (diabetes range if repeated)'}},
+  {'name': 'low 65', 'inputs': sg(65, 2), 'expect': {'band': 'Low sugar', 'emergency': False}},
+  {'name': 'very low 50', 'inputs': sg(50, 2), 'expect': {'band': 'Very low sugar', 'emergency': False}},
+  {'name': 'low 50 + drowsy → emergency', 'inputs': sg(50, 2, s_drowsy=True), 'expect': {'band': 'Very low sugar', 'emergency': True}},
+  {'name': '350 + vomiting → emergency', 'inputs': sg(350, 2, s_vomit=True), 'expect': {'band': 'Very high sugar', 'emergency': True}},
+  {'name': '350 no symptoms', 'inputs': sg(350, 2), 'expect': {'band': 'High', 'emergency': False}},
+])
+pdd = ga_case('LMP 1 Jun 2026', d(2026,11,9), lmp=d(2026,6,1))
+edd = dt.date(2026,6,1) + dt.timedelta(days=280)
+ga = (dt.date(2026,11,9) - dt.date(2026,6,1)).days
+write('p_due_date', 'LMP + 280 days; Python datetime reference', [
+  {'name': 'LMP 1 Jun 2026', 'inputs': {'lmp': d(2026,6,1), 'today': d(2026,11,9)},
+   'expect': {'headline': f"{edd.day} {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][edd.month-1]} {edd.year}",
+              'band': f'You are {ga//7} weeks {ga%7} days pregnant'}},
+])
+def hi_f(t, rh):
+    s_ = 0.5*(t + 61 + (t-68)*1.2 + rh*0.094)
+    if (s_ + t)/2 < 80: return s_
+    h = (-42.379 + 2.04901523*t + 10.14333127*rh - .22475541*t*rh - .00683783*t*t - .05481717*rh*rh
+         + .00122874*t*t*rh + .00085282*t*rh*rh - .00000199*t*t*rh*rh)
+    if rh < 13 and 80 <= t <= 112: h -= ((13-rh)/4)*math.sqrt((17-abs(t-95))/17)
+    elif rh > 85 and 80 <= t <= 87: h += ((rh-85)/10)*((87-t)/5)
+    return h
+def hband(h): return ('Extreme danger' if h >= 125 else 'Danger' if h >= 103 else 'Extreme caution' if h >= 90 else 'Caution' if h >= 80 else 'Low heat risk')
+cases = []
+for c, rh in [(25, 40), (32, 50), (35, 60), (40, 30), (45, 10), (29, 90), (38, 70)]:
+    h = hi_f(c*9/5+32, rh)
+    cases.append({'name': f'{c} °C {rh}% → {h:.1f} °F', 'inputs': {'temp': c, 'rh': rh, 's_confused': False, 's_hot': False},
+                  'expect': {'headline': r((h-32)*5/9), 'band': hband(h), 'emergency': False}})
+cases.append({'name': 'heat-stroke signs → emergency', 'inputs': {'temp': 40, 'rh': 30, 's_confused': True, 's_hot': False}, 'expect': {'emergency': True}})
+write('p_heat', 'NWS heat index algorithm (wpc.ncep.noaa.gov), reference implementation; NWS table: 96 °F 65% ≈ 121 °F', cases)
 print('golden files written')

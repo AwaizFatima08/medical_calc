@@ -1,0 +1,58 @@
+{
+ "id": "p_diabetes_risk",
+ "source": "IDRS point table (Mohan 2005), by hand",
+ "cases": [
+  {
+   "name": "young, slim, active, no family = 0",
+   "inputs": {
+    "age": 0,
+    "waist": 0,
+    "activity": 0,
+    "family": 0
+   },
+   "expect": {
+    "headline": "0",
+    "band": "Low risk"
+   }
+  },
+  {
+   "name": "20+10+0+0 = 30 medium",
+   "inputs": {
+    "age": 20,
+    "waist": 10,
+    "activity": 0,
+    "family": 0
+   },
+   "expect": {
+    "headline": "30",
+    "band": "Medium risk"
+   }
+  },
+  {
+   "name": "30+10+20+0 = 60 high",
+   "inputs": {
+    "age": 30,
+    "waist": 10,
+    "activity": 20,
+    "family": 0
+   },
+   "expect": {
+    "headline": "60",
+    "band": "High risk"
+   }
+  },
+  {
+   "name": "max 100",
+   "inputs": {
+    "age": 30,
+    "waist": 20,
+    "activity": 30,
+    "family": 20
+   },
+   "expect": {
+    "headline": "100",
+    "band": "High risk"
+   }
+  }
+ ]
+}

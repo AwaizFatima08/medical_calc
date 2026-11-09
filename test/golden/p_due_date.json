@@ -1,0 +1,17 @@
+{
+ "id": "p_due_date",
+ "source": "LMP + 280 days; Python datetime reference",
+ "cases": [
+  {
+   "name": "LMP 1 Jun 2026",
+   "inputs": {
+    "lmp": "2026-06-01",
+    "today": "2026-11-09"
+   },
+   "expect": {
+    "headline": "8 Mar 2027",
+    "band": "You are 23 weeks 0 days pregnant"
+   }
+  }
+ ]
+}

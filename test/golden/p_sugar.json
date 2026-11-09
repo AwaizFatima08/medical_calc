@@ -1,0 +1,131 @@
+{
+ "id": "p_sugar",
+ "source": "ADA 2026 thresholds, by hand",
+ "cases": [
+  {
+   "name": "fasting 92",
+   "inputs": {
+    "glu": 92,
+    "when": 0,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "Normal fasting sugar"
+   }
+  },
+  {
+   "name": "fasting 100",
+   "inputs": {
+    "glu": 100,
+    "when": 0,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "Raised (prediabetes range)"
+   }
+  },
+  {
+   "name": "fasting 126",
+   "inputs": {
+    "glu": 126,
+    "when": 0,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "High (diabetes range if repeated)"
+   }
+  },
+  {
+   "name": "after meal 139",
+   "inputs": {
+    "glu": 139,
+    "when": 1,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "Normal after a meal"
+   }
+  },
+  {
+   "name": "after meal 200",
+   "inputs": {
+    "glu": 200,
+    "when": 1,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "High (diabetes range if repeated)"
+   }
+  },
+  {
+   "name": "low 65",
+   "inputs": {
+    "glu": 65,
+    "when": 2,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "Low sugar",
+    "emergency": false
+   }
+  },
+  {
+   "name": "very low 50",
+   "inputs": {
+    "glu": 50,
+    "when": 2,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "Very low sugar",
+    "emergency": false
+   }
+  },
+  {
+   "name": "low 50 + drowsy → emergency",
+   "inputs": {
+    "glu": 50,
+    "when": 2,
+    "s_drowsy": true,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "Very low sugar",
+    "emergency": true
+   }
+  },
+  {
+   "name": "350 + vomiting → emergency",
+   "inputs": {
+    "glu": 350,
+    "when": 2,
+    "s_drowsy": false,
+    "s_vomit": true
+   },
+   "expect": {
+    "band": "Very high sugar",
+    "emergency": true
+   }
+  },
+  {
+   "name": "350 no symptoms",
+   "inputs": {
+    "glu": 350,
+    "when": 2,
+    "s_drowsy": false,
+    "s_vomit": false
+   },
+   "expect": {
+    "band": "High",
+    "emergency": false
+   }
+  }
+ ]
+}

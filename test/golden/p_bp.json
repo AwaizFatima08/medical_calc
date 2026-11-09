@@ -1,0 +1,147 @@
+{
+ "id": "p_bp",
+ "source": "AHA/ACC 2025 categories, by hand",
+ "cases": [
+  {
+   "name": "118/76 normal",
+   "inputs": {
+    "sbp": 118,
+    "dbp": 76,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "headline": "118/76",
+    "band": "Normal",
+    "emergency": false
+   }
+  },
+  {
+   "name": "125/78 elevated",
+   "inputs": {
+    "sbp": 125,
+    "dbp": 78,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "Elevated"
+   }
+  },
+  {
+   "name": "128/82 stage 1 (diastolic)",
+   "inputs": {
+    "sbp": 128,
+    "dbp": 82,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "High: stage 1"
+   }
+  },
+  {
+   "name": "145/85 stage 2",
+   "inputs": {
+    "sbp": 145,
+    "dbp": 85,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "High: stage 2",
+    "emergency": false
+   }
+  },
+  {
+   "name": "180/110 stage 2, not severe",
+   "inputs": {
+    "sbp": 180,
+    "dbp": 110,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "High: stage 2"
+   }
+  },
+  {
+   "name": "190/100 severe, no symptoms",
+   "inputs": {
+    "sbp": 190,
+    "dbp": 100,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "Severely high",
+    "emergency": false
+   }
+  },
+  {
+   "name": "190/100 + chest pain → emergency",
+   "inputs": {
+    "sbp": 190,
+    "dbp": 100,
+    "s_chest": true,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "Severely high",
+    "emergency": true
+   }
+  },
+  {
+   "name": "130/85 + weakness → emergency",
+   "inputs": {
+    "sbp": 130,
+    "dbp": 85,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": true,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "High: stage 1",
+    "emergency": true
+   }
+  },
+  {
+   "name": "85/55 low",
+   "inputs": {
+    "sbp": 85,
+    "dbp": 55,
+    "s_chest": false,
+    "s_breath": false,
+    "s_weak": false,
+    "s_vision": false,
+    "s_head": false
+   },
+   "expect": {
+    "band": "Low"
+   }
+  }
+ ]
+}

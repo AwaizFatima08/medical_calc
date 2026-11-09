@@ -104,6 +104,7 @@ class CalcResult {
     this.details = const [],
     this.interpretation,
     this.warnings = const [],
+    this.emergency,
   });
 
   /// Main value, already formatted (e.g. "89" or "3 points").
@@ -120,6 +121,10 @@ class CalcResult {
   /// What the source says this band means.
   final String? interpretation;
   final List<String> warnings;
+
+  /// Red-flag message: the result screen shows an emergency box with a
+  /// "Call 1122" button (design §6 S7).
+  final String? emergency;
 }
 
 class Source {

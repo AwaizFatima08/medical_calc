@@ -1,0 +1,116 @@
+{
+ "id": "p_heat",
+ "source": "NWS heat index algorithm (wpc.ncep.noaa.gov), reference implementation; NWS table: 96 °F 65% ≈ 121 °F",
+ "cases": [
+  {
+   "name": "25 °C 40% → 76.3 °F",
+   "inputs": {
+    "temp": 25,
+    "rh": 40,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "25",
+    "band": "Low heat risk",
+    "emergency": false
+   }
+  },
+  {
+   "name": "32 °C 50% → 93.9 °F",
+   "inputs": {
+    "temp": 32,
+    "rh": 50,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "34",
+    "band": "Extreme caution",
+    "emergency": false
+   }
+  },
+  {
+   "name": "35 °C 60% → 113.1 °F",
+   "inputs": {
+    "temp": 35,
+    "rh": 60,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "45",
+    "band": "Danger",
+    "emergency": false
+   }
+  },
+  {
+   "name": "40 °C 30% → 109.6 °F",
+   "inputs": {
+    "temp": 40,
+    "rh": 30,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "43",
+    "band": "Danger",
+    "emergency": false
+   }
+  },
+  {
+   "name": "45 °C 10% → 107.8 °F",
+   "inputs": {
+    "temp": 45,
+    "rh": 10,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "42",
+    "band": "Danger",
+    "emergency": false
+   }
+  },
+  {
+   "name": "29 °C 90% → 99.0 °F",
+   "inputs": {
+    "temp": 29,
+    "rh": 90,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "37",
+    "band": "Extreme caution",
+    "emergency": false
+   }
+  },
+  {
+   "name": "38 °C 70% → 144.5 °F",
+   "inputs": {
+    "temp": 38,
+    "rh": 70,
+    "s_confused": false,
+    "s_hot": false
+   },
+   "expect": {
+    "headline": "63",
+    "band": "Extreme danger",
+    "emergency": false
+   }
+  },
+  {
+   "name": "heat-stroke signs → emergency",
+   "inputs": {
+    "temp": 40,
+    "rh": 30,
+    "s_confused": true,
+    "s_hot": false
+   },
+   "expect": {
+    "emergency": true
+   }
+  }
+ ]
+}

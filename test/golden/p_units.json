@@ -1,0 +1,48 @@
+{
+ "id": "p_units",
+ "source": "Exact definitions: 1 in = 2.54 cm, 1 lb = 0.45359237 kg, °F = °C × 9/5 + 32; glucose 18.016",
+ "cases": [
+  {
+   "name": "5.5 mmol/L",
+   "quantity": "glucose",
+   "unit": "mmol/L",
+   "value": 5.5,
+   "base": 99.088
+  },
+  {
+   "name": "98.6 °F = 37 °C",
+   "quantity": "temperature",
+   "unit": "°F",
+   "value": 98.6,
+   "base": 37.0
+  },
+  {
+   "name": "104 °F = 40 °C",
+   "quantity": "temperature",
+   "unit": "°F",
+   "value": 104,
+   "base": 40.0
+  },
+  {
+   "name": "5.5 ft = 167.64 cm",
+   "quantity": "height",
+   "unit": "ft",
+   "value": 5.5,
+   "base": 167.64
+  },
+  {
+   "name": "66 in = 167.64 cm",
+   "quantity": "height",
+   "unit": "in",
+   "value": 66,
+   "base": 167.64
+  },
+  {
+   "name": "154 lb = 69.85 kg",
+   "quantity": "weight",
+   "unit": "lb",
+   "value": 154,
+   "base": 69.853
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "id": "p_bmi",
+ "source": "BMI with WHO 2004 Asian cut-offs; 5 ft 6 in = 167.64 cm; reference implementation",
+ "cases": [
+  {
+   "name": "{'kg': 70, 'ft': 5, 'inch': 6} → 24.91",
+   "inputs": {
+    "weight": 70,
+    "sex": 0,
+    "hunit": 1,
+    "feet": 5,
+    "inches": 6
+   },
+   "expect": {
+    "headline": "24.9",
+    "band": "Overweight / at risk"
+   }
+  },
+  {
+   "name": "{'kg': 80, 'ft': 5, 'inch': 6} → 28.47",
+   "inputs": {
+    "weight": 80,
+    "sex": 0,
+    "hunit": 1,
+    "feet": 5,
+    "inches": 6
+   },
+   "expect": {
+    "headline": "28.5",
+    "band": "Obese class I"
+   }
+  },
+  {
+   "name": "{'kg': 60, 'ft': 5, 'inch': 6} → 21.35",
+   "inputs": {
+    "weight": 60,
+    "sex": 0,
+    "hunit": 1,
+    "feet": 5,
+    "inches": 6
+   },
+   "expect": {
+    "headline": "21.3",
+    "band": "Normal"
+   }
+  },
+  {
+   "name": "{'kg': 63, 'cm': 165} → 23.14",
+   "inputs": {
+    "weight": 63,
+    "sex": 0,
+    "hunit": 0,
+    "height": 165
+   },
+   "expect": {
+    "headline": "23.1",
+    "band": "Overweight / at risk"
+   }
+  },
+  {
+   "name": "{'kg': 45, 'cm': 165} → 16.53",
+   "inputs": {
+    "weight": 45,
+    "sex": 0,
+    "hunit": 0,
+    "height": 165
+   },
+   "expect": {
+    "headline": "16.5",
+    "band": "Underweight"
+   }
+  },
+  {
+   "name": "woman waist 85 ≥ 80",
+   "inputs": {
+    "weight": 80,
+    "sex": 1,
+    "hunit": 0,
+    "height": 170,
+    "waist": 85
+   },
+   "expect": {
+    "detail": "is at or above 80 cm"
+   }
+  }
+ ]
+}

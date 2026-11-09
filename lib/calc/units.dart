@@ -51,7 +51,10 @@ abstract final class Q {
   static const height = Quantity('height', 'Height', [
     Unit('cm', 1),
     Unit('in', 2.54),
+    Unit('ft', 30.48),
   ]);
+  static const feet = Quantity('feet', 'Feet', [Unit('ft', 1)]);
+  static const inches = Quantity('inches', 'Inches', [Unit('in', 1)]);
   static const length = Quantity('length', 'Length', [
     Unit('cm', 1),
     Unit('in', 2.54),
@@ -172,6 +175,7 @@ abstract final class Q {
   static const heartRate = Quantity('heart_rate', 'Heart rate', [
     Unit('/min', 1),
   ]);
+  static const humidity = Quantity('humidity', 'Humidity', [Unit('%', 1)]);
   static const respRate = Quantity('resp_rate', 'Respiratory rate', [
     Unit('/min', 1),
   ]);
@@ -200,6 +204,14 @@ abstract final class Q {
     Unit('/µL', 0.001),
   ]);
 }
+
+/// Everyday conversions in Public mode (P10).
+const List<Quantity> kPublicConverterQuantities = [
+  Q.glucose,
+  Q.temperature,
+  Q.height,
+  Q.weight,
+];
 
 /// Tests offered in the D28 lab converter, in display order.
 const List<Quantity> kLabConverterTests = [
