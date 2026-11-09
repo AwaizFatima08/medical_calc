@@ -50,3 +50,6 @@ android/key.properties
 *.keystore
 service-account*.json
 .env
+
+# Kotlin compiler session files
+android/.kotlin/
