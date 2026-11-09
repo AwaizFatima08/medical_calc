@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:medicalcalc/calc/model.dart';
 import 'package:medicalcalc/calc/registry.dart';
 import 'package:medicalcalc/calc/units.dart';
+import 'package:medicalcalc/calc/who_growth.dart';
 
 Map<String, dynamic> _load(String id) => jsonDecode(
   File('test/golden/$id.json').readAsStringSync(),
@@ -22,6 +23,11 @@ Inputs _inputs(Map<String, dynamic> raw) => Inputs({
 });
 
 void main() {
+  WhoGrowth.instance = WhoGrowth.fromJson(
+    jsonDecode(File('assets/who_growth.json').readAsStringSync())
+        as Map<String, dynamic>,
+  );
+
   test('every calculator has golden vectors', () {
     for (final id in [...kCalculators.keys, ...kCustomScreens]) {
       expect(

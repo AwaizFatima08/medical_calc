@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,10 +10,15 @@ import 'app/config.dart';
 import 'app/router.dart';
 import 'app/settings.dart';
 import 'app/theme.dart';
+import 'calc/who_growth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
+  WhoGrowth.instance = WhoGrowth.fromJson(
+    jsonDecode(await rootBundle.loadString('assets/who_growth.json'))
+        as Map<String, dynamic>,
+  );
   final container = ProviderContainer(
     overrides: [sharedPrefsProvider.overrideWithValue(prefs)],
   );

@@ -1,0 +1,139 @@
+{
+ "id": "who_growth",
+ "source": "Independent LMS implementation on the WHO 2006 expanded tables; sanity: boy at birth 3.3464 kg = median",
+ "cases": [
+  {
+   "name": "newborn boy at median: WAZ 0.000 WHZ 0.131",
+   "inputs": {
+    "sex": 0,
+    "agemode": 1,
+    "months": 0,
+    "weight": 3.3464,
+    "length": 49.9,
+    "measured": 0,
+    "oedema": false
+   },
+   "expect": {
+    "headline": "+0.13",
+    "detail": "Weight-for-age: +0"
+   }
+  },
+  {
+   "name": "12-month boy 9.6 kg 75.7 cm: WAZ -0.044 WHZ -0.055",
+   "inputs": {
+    "sex": 0,
+    "agemode": 1,
+    "months": 12,
+    "weight": 9.6,
+    "length": 75.7,
+    "measured": 0,
+    "oedema": false
+   },
+   "expect": {
+    "headline": "−0.06",
+    "detail": "Weight-for-age: −0.04",
+    "band": "Within normal range"
+   }
+  },
+  {
+   "name": "18-month girl wasted: WAZ -2.066 WHZ -2.714",
+   "inputs": {
+    "sex": 1,
+    "agemode": 1,
+    "months": 18,
+    "weight": 8.0,
+    "length": 80.0,
+    "measured": 0,
+    "oedema": false
+   },
+   "expect": {
+    "headline": "−2.71",
+    "detail": "Weight-for-age: −2.07"
+   }
+  },
+  {
+   "name": "3-year boy SAM by WHZ: WAZ -3.014 WHZ -4.318",
+   "inputs": {
+    "sex": 0,
+    "agemode": 1,
+    "months": 36,
+    "weight": 10.0,
+    "length": 95.0,
+    "measured": 1,
+    "oedema": false
+   },
+   "expect": {
+    "headline": "−4.32",
+    "detail": "Weight-for-age: −3.01",
+    "band": "Severe acute malnutrition (SAM)"
+   }
+  },
+  {
+   "name": "2-year girl measured lying: WAZ -0.457 WHZ -0.437",
+   "inputs": {
+    "sex": 1,
+    "agemode": 1,
+    "months": 30,
+    "weight": 12.0,
+    "length": 90.0,
+    "measured": 0,
+    "oedema": false
+   },
+   "expect": {
+    "headline": "−0.44",
+    "detail": "Weight-for-age: −0.46"
+   }
+  },
+  {
+   "name": "MUAC 11.0 → SAM: WAZ -0.480 WHZ -0.181",
+   "inputs": {
+    "sex": 0,
+    "agemode": 1,
+    "months": 24,
+    "weight": 11.5,
+    "length": 85.0,
+    "measured": 1,
+    "oedema": false,
+    "muac": 11.0
+   },
+   "expect": {
+    "headline": "−0.18",
+    "detail": "Weight-for-age: −0.48",
+    "band": "Severe acute malnutrition (SAM)"
+   }
+  },
+  {
+   "name": "oedema → SAM: WAZ -0.514 WHZ -0.099",
+   "inputs": {
+    "sex": 1,
+    "agemode": 1,
+    "months": 20,
+    "weight": 10.0,
+    "length": 80.0,
+    "measured": 0,
+    "oedema": true
+   },
+   "expect": {
+    "headline": "−0.1",
+    "detail": "Weight-for-age: −0.51",
+    "band": "Severe acute malnutrition (SAM)"
+   }
+  },
+  {
+   "name": "overweight 4-year girl: WAZ 2.147 WHZ 3.429",
+   "inputs": {
+    "sex": 1,
+    "agemode": 1,
+    "months": 48,
+    "weight": 22.0,
+    "length": 102.0,
+    "measured": 1,
+    "oedema": false
+   },
+   "expect": {
+    "headline": "+3.43",
+    "detail": "Weight-for-age: +2.15"
+   }
+  }
+ ]
+}

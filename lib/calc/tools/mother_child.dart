@@ -1,4 +1,5 @@
 import '../model.dart';
+import '../who_growth.dart';
 import '../score.dart';
 import '../units.dart';
 
@@ -442,5 +443,208 @@ final dehydrationCalc = CalcDefinition(
   ],
   notes: const [
     'For children with acute diarrhoea. Severe acute malnutrition needs a different (ReSoMal) protocol.',
+  ],
+);
+
+// ---- D21 WHO growth z-scores and MUAC ----
+
+const _byDob = (id: 'agemode', value: 0);
+const _byMonths = (id: 'agemode', value: 1);
+
+String _z(double z) => '${z >= 0 ? '+' : '−'}${fmt(z.abs(), 2)}';
+
+final whoGrowthCalc = CalcDefinition(
+  id: 'who_growth',
+  version:
+      'WHO Child Growth Standards 2006 (0–5 years); WHO 2013 SAM guideline (MUAC)',
+  inputs: const [
+    ChoiceInput(
+      'sex',
+      'Sex',
+      initial: 0,
+      choices: [Choice('Boy', 0), Choice('Girl', 1)],
+    ),
+    ChoiceInput(
+      'agemode',
+      'Age from',
+      initial: 0,
+      choices: [Choice('Date of birth', 0), Choice('Age in months', 1)],
+    ),
+    DateInput('dob', 'Date of birth', showWhen: _byDob),
+    NumberInput(
+      'months',
+      'Age',
+      quantity: Q.ageMonths,
+      min: 0,
+      max: 60,
+      showWhen: _byMonths,
+    ),
+    NumberInput(
+      'weight',
+      'Weight',
+      quantity: Q.weight,
+      min: 0.9,
+      max: 58,
+      decimals: 2,
+    ),
+    NumberInput(
+      'length',
+      'Length or height',
+      quantity: Q.height,
+      min: 45,
+      max: 125,
+    ),
+    ChoiceInput(
+      'measured',
+      'Measured',
+      initial: 0,
+      choices: [
+        Choice('Lying down (length)', 0),
+        Choice('Standing (height)', 1),
+      ],
+    ),
+    NumberInput(
+      'muac',
+      'MUAC, mid-upper arm (6–59 months)',
+      quantity: Q.length,
+      min: 6,
+      max: 30,
+      optional: true,
+    ),
+    ToggleInput('oedema', 'Bilateral pitting oedema', points: 0),
+  ],
+  compute: (v) {
+    final who = WhoGrowth.instance;
+    final sex = v.choice('sex'),
+        kg = v.number('weight'),
+        len = v.number('length');
+    if (sex == null || kg == null || len == null) return null;
+    double? days;
+    if (v.choice('agemode') == 0) {
+      final dob = v.date('dob');
+      if (dob == null) return null;
+      days = daysBetween(dob, v.date('today') ?? DateTime.now()).toDouble();
+    } else {
+      final m = v.number('months');
+      if (m == null) return null;
+      days = m * 30.4375;
+    }
+    if (who == null) {
+      return const CalcResult(
+        headline: '—',
+        warnings: ['Growth tables are still loading.'],
+      );
+    }
+    if (days < 0 || days > 1856) {
+      return const CalcResult(
+        headline: '—',
+        severity: Severity.caution,
+        warnings: ['WHO Child Growth Standards cover birth to 5 years.'],
+      );
+    }
+    final girl = sex == 1;
+    final months = days / 30.4375;
+    // WHO: length (lying) under 24 months, height (standing) from 24 months.
+    var l = len;
+    final standing = v.choice('measured') == 1;
+    final adj = <String>[];
+    if (days < 731 && standing) {
+      l += 0.7;
+      adj.add('Standing height under 2 years: +0.7 cm to convert to length.');
+    } else if (days >= 731 && !standing) {
+      l -= 0.7;
+      adj.add('Lying length from 2 years: −0.7 cm to convert to height.');
+    }
+    final waz = who
+        .table('wfa', girl: girl)
+        .at(days.roundToDouble())!
+        .zRestricted(kg);
+    final haz = who.table('lhfa', girl: girl).at(days.roundToDouble())!.z(l);
+    final whTable = who.table(days < 731 ? 'wfl' : 'wfh', girl: girl);
+    final whLms = whTable.at((l * 10).round() / 10);
+    final whz = whLms?.zRestricted(kg);
+
+    final muac = v.number('muac');
+    final oedema = v.flag('oedema');
+    final sixTo59 = months >= 6 && months < 60;
+    String status;
+    Severity sev;
+    if (oedema ||
+        (whz != null && whz < -3) ||
+        (sixTo59 && muac != null && muac < 11.5)) {
+      status = 'Severe acute malnutrition (SAM)';
+      sev = Severity.danger;
+    } else if ((whz != null && whz < -2) ||
+        (sixTo59 && muac != null && muac < 12.5)) {
+      status = 'Moderate acute malnutrition (wasting)';
+      sev = Severity.warning;
+    } else if (whz != null && whz > 3) {
+      status = 'Obese (weight-for-length/height above +3)';
+      sev = Severity.warning;
+    } else if (whz != null && whz > 2) {
+      status = 'Overweight (above +2)';
+      sev = Severity.caution;
+    } else if (haz < -2) {
+      status = haz < -3 ? 'Severely stunted' : 'Stunted';
+      sev = haz < -3 ? Severity.warning : Severity.caution;
+    } else if (waz < -2) {
+      status = waz < -3 ? 'Severely underweight' : 'Underweight';
+      sev = Severity.caution;
+    } else {
+      status = 'Within normal range';
+      sev = Severity.normal;
+    }
+    return CalcResult(
+      headline: whz == null ? _z(waz) : _z(whz),
+      unit: whz == null
+          ? 'weight-for-age z'
+          : 'weight-for-${days < 731 ? 'length' : 'height'} z',
+      band: status,
+      severity: sev,
+      interpretation: sev == Severity.danger
+          ? 'SAM: refer for inpatient care if there are medical complications or poor appetite; otherwise outpatient therapeutic feeding (WHO 2013).'
+          : 'z-scores compare the child with the WHO standard for healthy children of the same age and sex.',
+      details: [
+        'Age: ${fmt(months, 1)} months',
+        'Weight-for-age: ${_z(waz)}${waz < -3
+            ? ' (severely underweight)'
+            : waz < -2
+            ? ' (underweight)'
+            : ''}',
+        '${days < 731 ? 'Length' : 'Height'}-for-age: ${_z(haz)}${haz < -3
+            ? ' (severely stunted)'
+            : haz < -2
+            ? ' (stunted)'
+            : ''}',
+        if (whz != null)
+          'Weight-for-${days < 731 ? 'length' : 'height'}: ${_z(whz)}'
+        else
+          'Weight-for-${days < 731 ? 'length' : 'height'}: outside the table (${fmt(whTable.minX, 0)}–${fmt(whTable.maxX, 0)} cm)',
+        if (muac != null && sixTo59)
+          'MUAC ${fmt(muac, 1)} cm: ${muac < 11.5
+              ? 'below 11.5 (SAM)'
+              : muac < 12.5
+              ? '11.5–12.4 (MAM)'
+              : '12.5 or more (normal)'}',
+        if (muac != null && !sixTo59)
+          'MUAC cut-offs apply to 6–59 months only.',
+        if (oedema) 'Bilateral pitting oedema means SAM whatever the z-scores.',
+        ...adj,
+      ],
+    );
+  },
+  formula:
+      'z = ((X/M)^L − 1) / (L × S) with WHO L, M, S values for age in days or length/height in 0.1 cm.\n'
+      'For weight indicators beyond ±3, WHO\'s restricted method uses the SD2–SD3 distance.\n'
+      'Wasting: WHZ below −2 (severe below −3); stunting: HAZ below −2; underweight: WAZ below −2. MUAC (6–59 months): SAM below 11.5 cm, MAM 11.5–12.4 cm.',
+  sources: const [
+    Source(
+      'WHO Multicentre Growth Reference Study Group. WHO Child Growth Standards: methods and development. WHO 2006.',
+      url: 'https://www.who.int/tools/child-growth-standards',
+    ),
+    Source(
+      'WHO. Guideline: updates on the management of severe acute malnutrition in infants and children, 2013.',
+      url: 'https://www.who.int/publications/i/item/9789241506328',
+    ),
   ],
 );

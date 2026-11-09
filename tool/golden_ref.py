@@ -432,4 +432,44 @@ write('p_ramadan', 'Checklist logic, by hand', [
   {'name': 'insulin', 'inputs': pr('r_insulin'), 'expect': {'headline': 'Talk to your doctor first'}},
   {'name': 'dialysis', 'inputs': pr('r_kidney','r_insulin'), 'expect': {'headline': 'Fasting may be unsafe'}},
 ])
+
+# ================= WHO growth =================
+W = json.load(open(os.path.join(os.path.dirname(__file__), '..', 'assets', 'who_growth.json')))
+def lms(key, x):
+    rows = W[key]['rows']
+    for a, b in zip(rows, rows[1:]):
+        if a[0] <= x <= b[0]:
+            t = 0 if b[0] == a[0] else (x - a[0]) / (b[0] - a[0])
+            return [a[i] + (b[i]-a[i])*t for i in (1, 2, 3)]
+    if abs(x - rows[-1][0]) < 1e-9: return rows[-1][1:]
+def zplain(X, L, M, S): return ((X/M)**L - 1)/(L*S)
+def zr(X, L, M, S):
+    z = zplain(X, L, M, S)
+    sd = lambda k: M*(1+L*S*k)**(1/L)
+    if z > 3: return 3 + (X - sd(3))/(sd(3) - sd(2))
+    if z < -3: return -3 + (X - sd(-3))/(sd(-2) - sd(-3))
+    return z
+def zs(z): return ('+' if z >= 0 else '−') + r(abs(z), 2)
+def growth(name, girl, months, kg, cm, standing=None, muac=None, oedema=False, band=None):
+    days = months*30.4375; g = 'girls' if girl else 'boys'
+    standing = (months >= 24) if standing is None else standing
+    l = cm + (0.7 if days < 731 and standing else -0.7 if days >= 731 and not standing else 0)
+    waz = zr(kg, *lms('wfa_'+g, round(days)))
+    wh = lms(('wfl_' if days < 731 else 'wfh_')+g, round(l*10)/10)
+    whz = zr(kg, *wh)
+    inp = {'sex': 1 if girl else 0, 'agemode': 1, 'months': months, 'weight': kg, 'length': cm, 'measured': 1 if standing else 0, 'oedema': oedema}
+    if muac is not None: inp['muac'] = muac
+    e = {'headline': zs(whz), 'detail': 'Weight-for-age: ' + zs(waz)}
+    if band: e['band'] = band
+    return {'name': f'{name}: WAZ {waz:.3f} WHZ {whz:.3f}', 'inputs': inp, 'expect': e}
+write('who_growth', 'Independent LMS implementation on the WHO 2006 expanded tables; sanity: boy at birth 3.3464 kg = median', [
+  growth('newborn boy at median', False, 0, 3.3464, 49.9),
+  growth('12-month boy 9.6 kg 75.7 cm', False, 12, 9.6, 75.7, band='Within normal range'),
+  growth('18-month girl wasted', True, 18, 8.0, 80.0),
+  growth('3-year boy SAM by WHZ', False, 36, 10.0, 95.0, band='Severe acute malnutrition (SAM)'),
+  growth('2-year girl measured lying', True, 30, 12.0, 90.0, standing=False),
+  growth('MUAC 11.0 → SAM', False, 24, 11.5, 85.0, muac=11.0, band='Severe acute malnutrition (SAM)'),
+  growth('oedema → SAM', True, 20, 10.0, 80.0, oedema=True, band='Severe acute malnutrition (SAM)'),
+  growth('overweight 4-year girl', True, 48, 22.0, 102.0),
+])
 print('golden files written')

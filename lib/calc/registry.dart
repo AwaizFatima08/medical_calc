@@ -36,6 +36,7 @@ final Map<String, CalcDefinition> kCalculators = {
     hollidaySegarCalc,
     parklandCalc,
     dehydrationCalc,
+    whoGrowthCalc,
     apriFib4Calc,
     a1cEagCalc,
     dripRateCalc,
